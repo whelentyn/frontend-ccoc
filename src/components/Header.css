@@ -1,0 +1,82 @@
+/* Reset margins and padding for the navbar */
+.navbar {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+}
+
+/* Align logos and menu items perfectly */
+.navbar-brand {
+    margin: 0;
+    padding: 0;
+}
+
+/* Adjust logos for consistent height */
+.navbar-brand img {
+    display: block;
+    height: 30px; /* Adjust logo height for consistency */
+    width: auto;
+}
+
+/* Center menu items with even spacing */
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2px;
+    gap: 3rem; /* Adjust spacing between menu items */
+}
+
+.nav-link {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    text-transform: capitalize;
+    padding: 0.5rem;
+}
+
+/* Hover effect for links */
+.nav-link:hover {
+    color: #0056b3 !important;
+}
+
+/* Responsive behavior for mobile view */
+@media (max-width: 992px) {
+    .navbar-collapse {
+        justify-content: center;
+    }
+
+    /* Switch hamburger menu and left logo positions */
+    .navbar-toggler {
+        order: 1;
+        margin-left: 0;
+    }
+
+    .navbar-brand:first-of-type {
+        order: 2;
+    }
+
+    .navbar-brand:last-of-type {
+        order: 3;
+    }
+
+    /* Center the menu when expanded */
+    .navbar-collapse {
+        order: 4;
+    }
+}
+
+/* Custom X icon */
+.close-icon {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+    color: #333;
+    display: inline-block;
+    text-align: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
