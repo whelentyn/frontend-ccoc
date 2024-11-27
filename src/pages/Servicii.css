@@ -1,0 +1,21 @@
+.custom-button {
+    display: inline-block;
+    background-color: var(--electric-iris-regular); /* Button background color */
+    color: #F5F5F5; /* Text color */
+    padding: 15px 20px; /* Button padding */
+    border: none; /* Remove border */
+    border-radius: 10px; /* Rounded corners */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+}
+
+.custom-button:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.custom-button:focus {
+    outline: none; /* Remove focus outline */
+    box-shadow: 0 0 8px rgba(99, 93, 255, 0.6); /* Focus shadow */
+}

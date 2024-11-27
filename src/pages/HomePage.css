@@ -1,0 +1,68 @@
+body {
+    font-family: 'Lexend', sans-serif !important;
+}
+
+.carousel-container {
+    position: relative;
+}
+
+.carousel .carousel-control-prev-icon,
+.carousel .carousel-control-next-icon {
+    filter: invert(1); /* Adjust color for better visibility */
+}
+
+.carousel .carousel-control-prev,
+.carousel .carousel-control-next {
+    top: 50%; /* Center buttons vertically */
+    transform: translateY(-50%);
+}
+
+/* Ce este CCOC Section Styling */
+
+/* Ce este CCOC Section Styling */
+
+.ccoc-text {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Image Stack Styling */
+
+.image-stack {
+    position: relative;
+    width: 400px; /* Ensures stack doesn't overflow */
+    height: 250px;
+}
+
+.stack-image {
+    position: absolute;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-image {
+    z-index: 3;
+    transform: rotate(0deg);
+    top: 0;
+    left: 0;
+}
+
+.middle-image {
+    z-index: 2;
+    transform: rotate(-5deg);
+    top: 10px;
+    left: 10px;
+}
+
+.back-image {
+    z-index: 1;
+    transform: rotate(5deg);
+    top: 20px;
+    left: 20px;
+}
+
+

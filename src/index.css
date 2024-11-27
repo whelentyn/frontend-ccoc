@@ -1,6 +1,11 @@
+body {
+  background-color: #FAFAFA;
+  opacity: 90%;
+}
+
 .h5-regular {
   font-family: 'Lexend', sans-serif !important;
-  font-size: 21px !important;
+  font-size: 16px !important;
   font-weight: normal !important;
 }
 
@@ -10,69 +15,74 @@
 
 .body-regular {
   font-family: 'Lexend', sans-serif !important;
-  font-size: 16px !important;
+  font-size: 11px !important;
   font-weight: normal !important;
+}
+
+.body-underline {
+  font-family: 'Lexend', sans-serif !important;
+  font-size: 11px !important;
   text-decoration: underline !important;
 }
 
 .body-bold {
   font-family: 'Lexend', sans-serif !important;
-  font-size: 16px !important;
+  font-size: 11px !important;
   font-weight: bold !important;
 }
 
 .body-bold-underline {
   font-family: 'Lexend', sans-serif !important;
-  font-size: 16px !important;
+  font-size: 11px !important;
   font-weight: bold !important;
   text-decoration: underline !important;
 }
 
 .header-bold {
   font-family: 'Lexend', sans-serif !important;
-  font-size: 96px !important;
+  font-size: 91px !important;
   font-weight: bold !important;
 }
 
 .header-regular {
   font-family: 'Lexend', sans-serif !important;
-  font-size: 96px !important;
+  font-size: 91px !important;
   font-weight: normal !important;
 }
 
 h1 {
   font-family: 'Lexend', sans-serif !important;
-  font-size: 64px !important;
+  font-size: 59px !important;
   font-weight: bold !important;
 }
 
 h2 {
   font-family: 'Lexend', sans-serif !important;
-  font-size: 48px !important;
+  font-size: 43px !important;
   font-weight: bold !important;
 }
 
 h3 {
   font-family: 'Lexend', sans-serif !important;
-  font-size: 36px !important;
+  font-size: 31px !important;
   font-weight: bold !important;
 }
 
 h4 {
   font-family: 'Lexend', sans-serif !important;
-  font-size: 28px !important;
+  font-size: 23px !important;
   font-weight: bold !important;
 }
 
 h5 {
   font-family: 'Lexend', sans-serif !important;
-  font-size: 21px !important;
+  font-size: 16px !important;
   font-weight: bold !important;
 }
 
 h5-regular {
   font-family: 'Lexend', sans-serif !important;
-  font-size: 21px !important;
+  font-size: 16px !important;
   font-weight: normal !important;
 }
 
@@ -92,6 +102,24 @@ h5-regular {
 .lemon-zest-focused { color: #C7E747 !important; }
 .ruby-blush-regular { color: #E74764 !important; }
 .ruby-blush-focused { color: #ED0F37 !important; }
+
+:root {
+  /* Electric Iris */
+  --electric-iris-regular: #5D5FEF;
+  --electric-iris-focused: #2C2FD5;
+
+  /* Coral Blaze */
+  --coral-blaze-regular: #E78147;
+  --coral-blaze-focused: #F06719;
+
+  /* Lemon Zest */
+  --lemon-zest-regular: #BAE313;
+  --lemon-zest-focused: #C7E747;
+
+  /* Ruby Blush */
+  --ruby-blush-regular: #E74764;
+  --ruby-blush-focused: #ED0F37;
+}
 
 code {
   font-family: 'Lexend', sans-serif !important;
