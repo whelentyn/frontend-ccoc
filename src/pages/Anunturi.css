@@ -1,0 +1,46 @@
+.container h1 {
+    margin-bottom: 1rem;
+}
+
+.filter-button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--electric-iris-regular); /* Text color */
+    border: 2px solid var(--electric-iris-regular); /* Border color */
+    border-radius: 25px; /* Rounded corners */
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.filter-button:hover {
+    background-color: var(--electric-iris-regular); /* Change background on hover */
+    color: white; /* Change text color on hover */
+}
+
+/* Base styles for pagination buttons */
+.custom-pagination-button {
+    padding: 5px 10px;
+    color: var(--electric-iris-regular); /* Text color */
+    background-color: #f9f9ff; /* Background color */
+    border: 2px solid var(--electric-iris-regular); /* Border color */
+    border-radius: 25px; /* Rounded corners */
+    text-align: center;
+    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth hover transition */
+}
+
+/* Hover effect */
+.custom-pagination-button:hover {
+    background-color: var(--electric-iris-regular); /* Hover background color */
+    color: white; /* Hover text color */
+}
+
+/* Active page button styling */
+.custom-pagination-button.active {
+    background-color: #635dff; /* Active background */
+    color: white; /* Active text */
+    border-color: #635dff; /* Match active border */
+}
+
