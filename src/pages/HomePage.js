@@ -5,9 +5,9 @@ import servicii_mainpage from "../assets/servicii_mainpage.svg";
 import proiecte_mainpage from "../assets/proiecte_mainpage.svg";
 import studentoffice_mainpage from "../assets/studentoffice_mainpage.svg";
 import contact_mainpage from "../assets/contact_mainpage.svg";
+import imagine_carusel from "../assets/imagine_carusel.svg";
 import "./HomePage.css";
 
-// Example partner data (replace with real data)
 const partners = [
     {
         id: 1,
@@ -51,17 +51,17 @@ const institutionalPartners = [
 
 const HomePage = () => {
     return (
-        <div style={{ marginTop: "100px" }}>
+        <div style={{ marginTop: "-100px" }}>
             {/* Main Content */}
             <div className="container my-4">
                 {/* Carousel Section */}
-                <div className="row mb-5">
+                <div className="row mb-6">
                     <div className="col-12">
                         <Carousel className="carousel-container">
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100 rounded"
-                                    src="https://via.placeholder.com/1200x400.png?text=Slide+1"
+                                    src={imagine_carusel}
                                     alt="First slide"
                                 />
                                 <Carousel.Caption>
@@ -72,7 +72,7 @@ const HomePage = () => {
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100 rounded"
-                                    src="https://via.placeholder.com/1200x400.png?text=Slide+2"
+                                    src={imagine_carusel}
                                     alt="Second slide"
                                 />
                                 <Carousel.Caption>
@@ -83,7 +83,7 @@ const HomePage = () => {
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100 rounded"
-                                    src="https://via.placeholder.com/1200x400.png?text=Slide+3"
+                                    src={imagine_carusel}
                                     alt="Third slide"
                                 />
                                 <Carousel.Caption>

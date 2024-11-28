@@ -6,7 +6,7 @@ const CardAnunturi = ({ items }) => {
         <div className="d-flex flex-column gap-1">
             {items.map((item, index) => (
                 <div key={index} className="card" style={{ border: "none" }}>
-                    <div className="card-body d-flex align-items-center">
+                    <div style={{paddingLeft: "0px"}} className="card-body d-flex align-items-center">
                         {/* Icon/Image */}
                         <img
                             style={{ height: "100%x", width: "40%", objectFit: "cover", borderRadius: "8px" }}

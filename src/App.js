@@ -34,12 +34,10 @@ const App = () => {
                         <Route path="/evenimente" element={<Evenimente />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/proiecte" element={<Proiecte />} />
-                        <Route path="/despre" element={<Despre />}>
-                            <Route path="misiune-si-scop" element={<MisiuneSiScop />} />
-                            <Route path="personal" element={<Personal />} />
-                            <Route path="sefi-de-oficii" element={<SefiDeOficii />} />
-                            <Route path="documente" element={<Documente />} />
-                        </Route>
+                        <Route path="/despre/misiune-si-scop" element={<Despre />} />
+                        <Route path="/despre/personal" element={<Personal />} />
+                        <Route path="/despre/sefi-de-oficii" element={<SefiDeOficii />} />
+                        <Route path="/despre/documente" element={<Documente />} />
                     </Routes>
                     <Footer />
                 </div>

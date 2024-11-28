@@ -6,26 +6,22 @@
     border: none;
     height: 60px;
     background-color: #FAFAFA !important; /* Set solid background */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
     z-index: 1030; /* Ensure it stays on top */
     position: sticky; /* Fix header while scrolling */
     top: 0;
 }
 
-/* Align logos and menu items perfectly */
 .navbar-brand {
     margin: 0;
     padding: 0;
 }
 
-/* Adjust logos for consistent height */
 .navbar-brand img {
     display: block;
     height: 50px;
     width: auto;
 }
 
-/* Center menu items with even spacing */
 .navbar-nav {
     display: flex;
     justify-content: center;
@@ -38,13 +34,11 @@
     color: #333;
     text-transform: capitalize;
     padding: 0.5rem;
-    transition: color 0.3s, font-weight 0.3s; /* Smooth hover effect */
+    transition: color 0.3s, font-weight 0.1s; /* Smooth hover effect */
 }
 
-/* Hover effect for links */
 .nav-link:hover {
     font-weight: bold;
-    color: #0056b3; /* Change color on hover */
 }
 
 /* Navbar Toggler Styles */
@@ -97,3 +91,29 @@
         order: 4;
     }
 }
+
+.dropdown-header {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 1px solid #ddd; /* Separator between header and items */
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #333;
+    text-decoration: none;
+    background-color: #FAFAFA; /* White background */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5; /* Light hover effect */
+    color: #0044cc;
+}
+
+

@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
 import './Header.css';
-import '../index.css'
 import ccoc_logo from '../assets/logo_ccoc.svg';
 import upt_logo from '../assets/logo_upt.svg';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleToggle = () => {
-        setMenuOpen(!menuOpen); // Toggle the state
+        setMenuOpen(!menuOpen);
     };
 
     return (
-
-        <Navbar expand="lg" bg="light" variant="light" className="p-0">
+        <Navbar expand="lg" className="p-0">
             <Container fluid className="d-flex align-items-center justify-content-between p-0">
                 {/* Left Logo (CCOC) */}
                 <Navbar.Brand href="/" className="ccoc">
-                    <img src={ccoc_logo} alt="CCOC Logo" style={{height: '35px', marginLeft: '15px' }} />
+                    <img src={ccoc_logo} alt="CCOC Logo" style={{ height: '35px', marginLeft: '15px' }} />
                 </Navbar.Brand>
 
                 {/* Navbar Toggle */}
@@ -45,16 +43,49 @@ const Header = () => {
                 >
                     <Nav className="mx-auto">
                         <NavDropdown title={<span className="h5-regular g6">Despre</span>} id="despre-dropdown">
-                            <NavDropdown.Item as={Link} to="/misiune" className="h5-regular g6">Misiune și scop</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/personal" className="h5-regular g6">Personal CCOC</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/sefi" className="h5-regular g6">Șefi de oficii</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/documente" className="h5-regular g6">Documente</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/despre/misiune-si-scop" className="h5-regular g6">
+                                Misiune și scop
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/despre/personal" className="h5-regular g6">
+                                Personal CCOC
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/despre/sefi-de-oficii" className="h5-regular g6">
+                                Șefi de oficii
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/despre/documente" className="h5-regular g6">
+                                Documente
+                            </NavDropdown.Item>
                         </NavDropdown>
+
+                        {/* Other Navbar Links */}
                         <Nav.Link as={Link} to="/servicii" className="h5-regular g6">Servicii CCOC</Nav.Link>
                         <Nav.Link as={Link} to="/voluntariat" className="h5-regular g6">Voluntariat</Nav.Link>
                         <Nav.Link as={Link} to="/anunturi" className="h5-regular g6">Anunțuri</Nav.Link>
-                        <Nav.Link as={Link} to="/evenimente" className="h5-regular g6">Evenimente</Nav.Link>
-                        <Nav.Link as={Link} to="/proiecte" className="h5-regular g6">Proiecte</Nav.Link>
+                        <NavDropdown title={<span className="h5-regular g6">Evenimente</span>}>
+                            <NavDropdown.Item as={Link} to="/evenimente/zilele-carierei" className="dropdown-item">
+                                Zilele Carierei
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/evenimente/zilele-consilierii" className="dropdown-item">
+                                Zilele Consilierii
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/evenimente/sexed" className="dropdown-item">
+                                SexEd
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/evenimente/connecting-bridges" className="dropdown-item">
+                                Connecting Bridges
+                            </NavDropdown.Item>
+                        </NavDropdown>
+
+                        <NavDropdown
+                            title={<span className="h5-regular g6">Proiecte</span>}
+                            id="proiecte-dropdown"
+                            className="custom-dropdown"
+                        >
+                            <NavDropdown.Item as={Link} to="/proiecte/fdi" className="dropdown-item">
+                                FDI
+                            </NavDropdown.Item>
+                        </NavDropdown>
+
                         <Nav.Link as={Link} to="/contact" className="h5-regular g6">Contact</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

@@ -5,11 +5,14 @@ import anunturiImage from "../assets/anunturi.svg"; // Example image
 import './Anunturi.css'
 
 const AnnouncementsPage = () => {
-    // Sample Data: Replace this with your actual data
     const announcements = Array(20).fill(null).map((_, index) => ({
         date: `12 iulie 202${index % 10}`,
         title: `Announcement Title ${index + 1}`,
-        description: `Description for Announcement ${index + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+        description: `Description for Announcement ${index + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Description for Announcement ${index + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Description for Announcement ${index + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Description for Announcement ${index + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Description for Announcement ${index + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
         image: anunturiImage,
     }));
 
@@ -47,8 +50,8 @@ const AnnouncementsPage = () => {
 
                     {/* Title and Subtitle */}
                     <h1 className="g6 h1">Anunțuri</h1>
-                    <p>Află ultimele noutăți de interes pentru tine.</p>
-                    <div className="d-flex justify-content-between align-items-center">
+                    <p className="body-regular g3">Află ultimele noutăți de interes pentru tine.</p>
+                    <div className="d-flex">
                         {/* Pagination Controls */}
                         <nav className="pagination-wrapper">
                             <ul className="pagination mb-0 d-flex flex-wrap gap-2">

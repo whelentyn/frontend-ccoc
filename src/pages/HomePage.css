@@ -6,6 +6,25 @@ body {
     position: relative;
 }
 
+.carousel-container {
+    max-height: 300px; /* Adjust this to your desired height */
+    overflow: hidden; /* Ensure no content overflows */
+    border-bottom-left-radius: 25px; /* Rounded bottom-left corner */
+    border-bottom-right-radius: 25px; /* Rounded bottom-right corner */
+}
+
+.carousel-container img {
+    object-fit: cover;
+    width: 100%;
+    height: 300px; /* Adjust height as needed */
+    border-bottom-left-radius: 25px; /* Rounded bottom-left corner */
+    border-bottom-right-radius: 25px; /* Rounded bottom-right corner */
+}
+
+.carousel-caption {
+    bottom: 10px; /* Adjust positioning of the caption if necessary */
+}
+
 .carousel .carousel-control-prev-icon,
 .carousel .carousel-control-next-icon {
     filter: invert(1); /* Adjust color for better visibility */
