@@ -1,0 +1,19 @@
+.proiecte-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 25px;
+    background-color: var(--g0);
+    border: 1px solid var(--g1);
+}
+
+.proiecte-card img {
+    align-self: flex-start;
+}
+
+.proiecte-card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}

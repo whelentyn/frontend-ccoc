@@ -14,7 +14,7 @@ const ServicesPage = () => {
             </div>
             <div className="row mb-4">
                 <div className="col-md-6">
-                    <div className="row align-items-stretch" style={{ height: "100%" }}>
+                    <div className="row align-items-stretch" style={{ height: "100%", borderRadius: "20px", marginRight: "3px", backgroundColor: "#F5F5F5" }}>
                         <div
                             className="col-md-4"
                             style={{
@@ -50,8 +50,8 @@ const ServicesPage = () => {
                                     ajutându-i să-și regăsească echilibrul și bunăstarea emoțională.
                                 </p>
                                 <a
-                                    style={{ marginTop: "90px" }}
-                                    href="#"
+                                    style={{ marginTop: "70px" }}
+                                    href="/servicii/formular"
                                     className="custom-button h5-regular"
                                 >
                                     Fă o programare!
@@ -62,7 +62,7 @@ const ServicesPage = () => {
                 </div>
 
                 <div className="col-md-6">
-                    <div className="row align-items-stretch" style={{ height: "100%" }}>
+                    <div className="row align-items-stretch" style={{ height: "100%", borderRadius: "15px", marginRight: "3px", backgroundColor: "#F5F5F5" }}>
                         <div
                             className="col-md-4"
                             style={{
@@ -90,7 +90,7 @@ const ServicesPage = () => {
                                 }}
                             ></div>
                         </div>
-                        <div className="col-md-8 d-flex flex-column justify-content-between" style={{ height: "100%" }}>
+                        <div className="col-md-8 d-flex flex-column justify-content-between" style={{ height: "100%", borderRadius: "15px", marginRight: "3px", backgroundColor: "#F5F5F5" }}>
                             <div style={{ marginTop: "25px" }}>
                                 <h3 className="g6 h3">Consiliere psihologică</h3>
                                 <p className="body-regular g6">
@@ -111,7 +111,7 @@ const ServicesPage = () => {
             </div>
             <div className="row">
                 <div className="col-md-6">
-                    <div className="row align-items-stretch" style={{ height: "100%" }}>
+                    <div className="row align-items-stretch" style={{ height: "100%", borderRadius: "15px", marginRight: "3px", backgroundColor: "#F5F5F5" }}>
                         <div
                             className="col-md-4"
                             style={{
@@ -139,7 +139,7 @@ const ServicesPage = () => {
                                 }}
                             ></div>
                         </div>
-                        <div className="col-md-8 d-flex flex-column justify-content-between" style={{ height: "100%" }}>
+                        <div className="col-md-8 d-flex flex-column justify-content-between" style={{ height: "100%", borderRadius: "15px", marginRight: "3px", backgroundColor: "#F5F5F5" }}>
                             <div style={{ marginTop: "25px" }}>
                                 <h3 className="g6 h3">Consiliere psihologică</h3>
                                 <p className="body-regular g6">
@@ -158,7 +158,7 @@ const ServicesPage = () => {
                     </div>
                 </div>
                 <div className="col-md-6">
-                    <div className="row align-items-stretch" style={{ height: "100%" }}>
+                    <div className="row align-items-stretch" style={{ height: "100%", borderRadius: "15px", marginRight: "3px", backgroundColor: "#F5F5F5" }}>
                         <div
                             className="col-md-4"
                             style={{

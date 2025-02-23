@@ -1,0 +1,33 @@
+.container-anunturi-detail {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.img-anunturi-detail {
+    border-radius: 200px;
+    border: none !important; /* Ensure no borders */
+    box-shadow: none !important; /* Remove any shadow that might look like a border */
+}
+
+.recent-articles {
+    margin-top: 40px;
+}
+
+.card-altele {
+    border: none !important; /* Explicitly remove any visible border */
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: none !important; /* Ensure no shadow is applied */
+    outline: none; /* Remove any outline around the card */
+}
+
+.card-altele:hover {
+    transform: translateY(-1px); /* Slight lift effect on hover */
+    box-shadow: 4px 4px 0 var(--lemon-zest-regular) !important; /* Ensure shadow applies */
+}
+
+.card-img-top {
+    border-radius: 10px 10px 0 0;
+    border: none !important; /* Remove border from the top image */
+}

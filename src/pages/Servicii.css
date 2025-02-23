@@ -11,11 +11,7 @@
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
 }
 
-.custom-button:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
-}
-
-.custom-button:focus {
-    outline: none; /* Remove focus outline */
-    box-shadow: 0 0 8px rgba(99, 93, 255, 0.6); /* Focus shadow */
+.custom-button:hover, .custom-button:focus {
+    background-color: var(--electric-iris-focused );
+    box-shadow: 4px 4px 0 var(--lemon-zest-regular); /* More prominent shadow on hover */
 }

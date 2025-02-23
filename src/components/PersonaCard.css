@@ -1,0 +1,23 @@
+
+.rounded-modal .modal-content {
+    border-radius: 20px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+.modal-header-custom {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #f8f9fa;
+}
+
+.modal-body-custom {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 20px;
+}
+
+.rounded-modal .modal-header .btn-close {
+    font-size: 16px;
+    padding: 5px;
+}

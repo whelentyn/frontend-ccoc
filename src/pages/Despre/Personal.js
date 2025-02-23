@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Personal.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import persoana from "../../assets/persoana.png";
+import PersonaCard from '../../components/PersonaCard';
 
 const Personal = () => {
+    const categories = [
+        { name: 'Coordonare', color: '--electric-iris-regular' },
+        { name: 'Consiliere psihologică', color: '--coral-blaze-regular' },
+        { name: 'Consiliere în carieră', color: '--lemon-zest-regular' },
+        { name: 'Evaluarea aptitudinală', color: '--ruby-blush-regular' },
+        { name: 'Voluntariat', color: '--electric-iris-regular' },
+        { name: 'Comunicare', color: '--coral-blaze-regular' },
+    ];
+
     const staff = [
         {
             name: 'Loredana Mihaela STANCIU',
@@ -9,8 +21,9 @@ const Personal = () => {
             location: 'BCUPT - Timișoara, Bd. Vasile Pârvan, nr. 2B, sala 4001',
             phone: '0723 545 671',
             email: 'loredana.stanciu@upt.ro',
-            avatar: 'path/to/avatar1.jpg',
-            badges: ['Director'],
+            avatar: persoana,
+            description: 'This individual is an accomplished professional known for their dedication and expertise in their field. With a passion for innovation and a strong commitment to excellence, they consistently deliver outstanding results.',
+            badges: ['Coordonare', 'Comunicare', 'Consiliere psihologică', 'Voluntariat', 'Consiliere în carieră'],
         },
         {
             name: 'Andreea Raluca FENICI',
@@ -18,8 +31,8 @@ const Personal = () => {
             location: 'BCUPT - Timișoara, Bd. Vasile Pârvan, nr. 2B, sala 4001',
             phone: '0723 545 671',
             email: 'andreea.fenici@upt.ro',
-            avatar: 'path/to/avatar2.jpg',
-            badges: ['Psiholog'],
+            avatar: persoana,
+            badges: ['Consiliere psihologică'],
         },
         {
             name: 'Cristina HĂLBAC COTOARĂ ZAMFIR',
@@ -27,53 +40,65 @@ const Personal = () => {
             location: 'BCUPT - Timișoara, Bd. Vasile Pârvan, nr. 2B, sala 4001',
             phone: '0723 545 671',
             email: 'cristina.halbac@upt.ro',
-            avatar: 'path/to/avatar3.jpg',
-            badges: ['Psiholog'],
+            avatar: persoana,
+            badges: ['Consiliere în carieră', 'Evaluarea aptitudinală'],
         },
-        // Add more staff data here...
     ];
+
+    const [selectedCategories, setSelectedCategories] = useState([]);
+
+    const handleCategoryClick = (category) => {
+        setSelectedCategories((prevSelected) =>
+            prevSelected.includes(category.name)
+                ? prevSelected.filter((name) => name !== category.name) // Remove category if already selected
+                : [...prevSelected, category.name] // Add category if not selected
+        );
+    };
+
+    const filteredStaff =
+        selectedCategories.length > 0
+            ? staff.filter((person) =>
+                person.badges.some((badge) =>
+                    selectedCategories.includes(badge)
+                )
+            )
+            : staff;
 
     return (
         <div className="container py-5">
-            <h1 className="mb-4">Personal angajat</h1>
-            <p className="mb-5">Descoperă cine formează echipa CCOC.</p>
             <div className="row">
-                {staff.map((person, index) => (
-                    <div className="col-lg-4 col-md-6 mb-4" key={index}>
-                        <div className="card h-100 shadow-sm">
-                            <div className="card-body text-center">
-                                <img
-                                    src={person.avatar}
-                                    alt={person.name}
-                                    className="rounded-circle mb-3"
-                                    style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-                                />
-                                <h5 className="card-title">{person.name}</h5>
-                                <p className="text-muted">{person.role}</p>
-                                <div className="mb-2">
-                                    {person.badges.map((badge, badgeIndex) => (
-                                        <span
-                                            className="badge bg-primary text-white me-1"
-                                            key={badgeIndex}
-                                        >
-                                            {badge}
-                                        </span>
-                                    ))}
-                                </div>
-                                <p className="small text-muted">{person.location}</p>
-                                <p className="small">
-                                    <i className="bi bi-telephone me-2"></i>{person.phone}
-                                </p>
-                                <p className="small">
-                                    <i className="bi bi-envelope me-2"></i>
-                                    <a href={`mailto:${person.email}`} className="text-decoration-none">
-                                        {person.email}
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
+                {/* Left Sidebar */}
+                <div style={{ marginTop: '13px' }} className="col-lg-2 col-md-4 mb-4">
+                    <div className="d-flex flex-column gap-2">
+                        {categories.map((category, index) => (
+                            <button
+                                key={index}
+                                onClick={() => handleCategoryClick(category)}
+                                className={`body-regular filter-button-personal ${
+                                    selectedCategories.includes(category.name) ? 'active' : ''
+                                }`}
+                                style={{
+                                    textAlign: 'left',
+                                }}
+                            >
+                                {category.name}
+                            </button>
+                        ))}
                     </div>
-                ))}
+                </div>
+
+                {/* Main Content */}
+                <div className="col-lg-9 col-md-8">
+                    <h1 className="g6 h5">Personal angajat</h1>
+                    <p className="body-regular g3">Descoperă cine formează echipa CCOC.</p>
+                    <div className="row">
+                        {filteredStaff.map((person, index) => (
+                            <div className="col-lg-6 col-md-12 mb-4" key={index}>
+                                <PersonaCard person={person} categories={categories} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );

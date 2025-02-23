@@ -1,1 +1,24 @@
+.filter-button-personal {
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--electric-iris-regular); /* Default text color */
+    border: 2px solid var(--electric-iris-regular); /* Border color */
+    border-radius: 55px; /* Rounded corners */
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition */
+    background-color: #FAFAFA; /* Default background color */
+}
+
+.filter-button-personal:hover {
+    background-color: var(--electric-iris-regular); /* Change background on hover */
+    color: #FAFAFA; /* Change text color on hover */
+}
+
+.filter-button-personal.active {
+    background-color: var(--electric-iris-regular); /* Active state background */
+    color: #FAFAFA; /* Active state text color */
+    border-color: var(--electric-iris-regular); /* Keep border consistent */
+}
+
 

@@ -1,0 +1,70 @@
+.page-title {
+    font-family: "Lexend", sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #000;
+}
+
+.page-subtitle {
+    font-family: "Lexend", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-family: "Lexend", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.doc-item {
+    width: 100%;
+}
+
+.doc-button {
+    font-family: "Lexend", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #5D5FEF;
+    background-color: transparent;
+    border: 2px solid #5D5FEF;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.doc-button.active {
+    position: relative;
+    color: #5D5FEF;
+    border-color: #5D5FEF;
+    border-width: 4px;
+    background-color: transparent;
+    display: block; /* Ensure it occupies a full line */
+    box-shadow: 4px 4px 0px #BAE313; /* Adds shadow on bottom and right sides */
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+
+.doc-button.active .arrow {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.doc-item.active {
+    width: 100%; /* Ensure the active button takes the full line */
+    margin-bottom: 10px;
+}
+
+.doc-button:hover {
+    background-color: #5D5FEF;
+    color: #fff;
+}
+

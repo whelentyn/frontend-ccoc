@@ -1,57 +1,56 @@
-import React from 'react';
-import './Despre.css';
+import React from "react";
+import "./Despre.css";
 
-const Despre = () => {
+const Despre = ({
+                    title = "Despre noi",
+                    subtitle = "Cunoaște mai bine activitatea și serviciile noastre",
+                    content = `
+        <h3>Centrul de Consiliere și Orientare în Carieră (CCOC)</h3>
+        <p>
+            CCOC al Universității Politehnica Timișoara (UPT) reprezintă o structură esențială dedicată sprijinirii 
+            studenților în tranziția lor către o carieră de succes.
+        </p>
+        <p>
+            Misiunea principală este de a oferi acces la informații relevante, resurse de orientare profesională 
+            și suport personalizat pentru integrarea pe piața muncii.
+        </p>
+        <h3>Servicii oferite de CCOC</h3>
+        <ul>
+            <li><strong>Consiliere</strong> în diverse probleme</li>
+            <li><strong>Evaluare aptitudinală</strong> și ghidare în carieră</li>
+            <li><strong>Traininguri</strong> și workshopuri</li>
+            <li><strong>Prezentări de companii</strong> și evenimente de carieră</li>
+            <li><strong>Oportunități</strong> de stagii și locuri de muncă</li>
+        </ul>
+        <p>
+            CCOC colaborează cu angajatorii pentru a facilita accesul la oportunități profesionale pentru studenți 
+            și absolvenți UPT.
+        </p>
+    `,
+                    imageUrl = "https://via.placeholder.com/300x200"
+                }) => {
     return (
         <div className="container py-5">
-            <h1 className="text-start mb-3">Despre noi</h1>
-            <p className="text-start text-muted mb-4">Lorem ipsum dolor sit amet</p>
+            <div className="section-header">
+                <h1 className="h1 g6" dangerouslySetInnerHTML={{ __html: title }}></h1>
+                <p className="g3 body-regular" dangerouslySetInnerHTML={{ __html: subtitle }}></p>
+            </div>
             <div className="row align-items-start">
-                {/* Left Column */}
+                {/* Left Column - Dynamic Content */}
                 <div className="col-lg-8">
-                    <h2 className="mb-3">Centrul de Consiliere și Orientare în Carieră (CCOC)</h2>
-                    <p>
-                        Centrul de Consiliere și Orientare în Carieră (CCOC) al Universității Politehnica Timișoara (UPT)
-                        reprezintă o structură esențială dedicată sprijinirii studenților pe parcursul formării lor
-                        academice și în procesul de tranziție către o carieră de succes. Misiunea principală a CCOC este de
-                        a asigura studenților accesul la informații relevante, resurse de orientare profesională și suport
-                        personalizat pentru integrarea cât mai eficientă pe piața muncii și în societate.
-                    </p>
-                    <p>
-                        Prin intermediul serviciilor oferite, CCOC își propune să contribuie la dezvoltarea competențelor
-                        și abilităților necesare pentru o carieră competitivă, adaptată fiecărei persoane. Activități
-                        individuale, workshopuri tematice și activități practice care să ajute studenții în identificarea
-                        intereselor și aptitudinilor lor. De asemenea, centrul colaborează activ cu angajatorii pentru a
-                        facilita accesul la stagii de practică, internshipuri și locuri de muncă.
-                    </p>
-                    <p>
-                        CCOC se concentrează și pe integrarea socială a studenților, sprijinindu-i în depășirea provocărilor
-                        legate de adaptarea la viața universitară, precum și în dezvoltarea unei atitudini proactive față
-                        de învățare și carieră. Printr-o gamă variată de activități, CCOC urmărește să creeze o punte
-                        solidă între mediul academic și cel profesional.
-                    </p>
-
-                    <h3 className="mt-4">Servicii oferite de CCOC</h3>
-                    <ul>
-                        <li>Informarea studenților și a absolvenților prin căile de comunicare ale CCOC</li>
-                        <li>Consiliere studenților în diverse probleme</li>
-                        <li>Consiliere psihologică</li>
-                        <li>Evaluare aptitudinală</li>
-                        <li>Traininguri</li>
-                        <li>Seminarii</li>
-                        <li>Workshopuri</li>
-                        <li>Identificarea de oportunități pentru studenți și absolvenți UPT</li>
-                        <li>Prezentări de companii</li>
-                        <li>Zilele Carierei</li>
-                        <li>Vizite în companii</li>
-                        <li>Promovarea ofertei educaționale a UPT</li>
-                        <li>Generarea de diverse materiale suport pentru studenți</li>
-                        <li>Gestionarea unor programe precum: Euro 200, tabere studențești, burse sociale speciale</li>
-                    </ul>
+                    <div
+                        className="body-regular g4 rich-text-content"
+                        dangerouslySetInnerHTML={{ __html: content }}
+                    ></div>
                 </div>
 
-                {/* Right Column with Triangle */}
-                <div className="col-lg-4 d-flex justify-content-end">
+                {/* Right Column - Image and Design Elements */}
+                <div className="col-lg-4 d-flex flex-column align-items-end">
+                    {imageUrl && (
+                        <div className="image-container">
+                            <img src={imageUrl} alt="CCOC" className="responsive-image" />
+                        </div>
+                    )}
                     <div className="triangle-container">
                         <div className="triangle green-triangle"></div>
                         <div className="triangle yellow-triangle"></div>

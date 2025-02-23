@@ -42,17 +42,21 @@ const Header = () => {
                     className={`justify-content-center ${menuOpen ? 'show' : ''}`}
                 >
                     <Nav className="mx-auto">
-                        <NavDropdown title={<span className="h5-regular g6">Despre</span>} id="despre-dropdown">
-                            <NavDropdown.Item as={Link} to="/despre/misiune-si-scop" className="h5-regular g6">
+                        <NavDropdown
+                            title={<span className="h5-regular">Despre</span>}
+                            id="despre-dropdown"
+                            className="animated-dropdown"
+                        >
+                            <NavDropdown.Item as={Link} to="/despre/misiune-si-scop" className="dropdown-item">
                                 Misiune și scop
                             </NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/despre/personal" className="h5-regular g6">
+                            <NavDropdown.Item as={Link} to="/despre/personal" className="dropdown-item">
                                 Personal CCOC
                             </NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/despre/sefi-de-oficii" className="h5-regular g6">
+                            <NavDropdown.Item as={Link} to="/despre/sefi-de-oficii" className="dropdown-item">
                                 Șefi de oficii
                             </NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/despre/documente" className="h5-regular g6">
+                            <NavDropdown.Item as={Link} to="/despre/documente" className="dropdown-item">
                                 Documente
                             </NavDropdown.Item>
                         </NavDropdown>
@@ -61,7 +65,11 @@ const Header = () => {
                         <Nav.Link as={Link} to="/servicii" className="h5-regular g6">Servicii CCOC</Nav.Link>
                         <Nav.Link as={Link} to="/voluntariat" className="h5-regular g6">Voluntariat</Nav.Link>
                         <Nav.Link as={Link} to="/anunturi" className="h5-regular g6">Anunțuri</Nav.Link>
-                        <NavDropdown title={<span className="h5-regular g6">Evenimente</span>}>
+                        <NavDropdown
+                            title={<span className="h5-regular">Evenimente</span>}
+                            id="evenimente-dropdown"
+                            className="animated-dropdown"
+                        >
                             <NavDropdown.Item as={Link} to="/evenimente/zilele-carierei" className="dropdown-item">
                                 Zilele Carierei
                             </NavDropdown.Item>
@@ -77,9 +85,9 @@ const Header = () => {
                         </NavDropdown>
 
                         <NavDropdown
-                            title={<span className="h5-regular g6">Proiecte</span>}
+                            title={<span className="h5-regular">Proiecte</span>}
                             id="proiecte-dropdown"
-                            className="custom-dropdown"
+                            className="animated-dropdown"
                         >
                             <NavDropdown.Item as={Link} to="/proiecte/fdi" className="dropdown-item">
                                 FDI
