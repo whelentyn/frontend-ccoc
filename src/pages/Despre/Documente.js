@@ -34,7 +34,7 @@ const DocumentePage = () => {
         items.map((item, index) => (
             <button
                 key={index}
-                className={`doc-button ${item.active ? "active" : ""}`}
+                className={`doc-button h5-regular ${item.active ? "active" : ""}`}
             >
                 {item.label || item.year}
             </button>
@@ -42,19 +42,19 @@ const DocumentePage = () => {
 
     return (
         <div className="container py-5">
-            <h1 className="h1 g6">Documente</h1>
+            <h1 className="g6">Documente</h1>
             <p className="body-regular g3">Lorem ipsum dolor sit amet</p>
             <div className="row">
                 {/* Left Column */}
                 <div className="col-md-6">
-                    <p className="h3 g6">Rapoarte de activitate</p>
+                    <h3 className="h3 g6 mt-2">Rapoarte de activitate</h3>
                     <div className="d-flex flex-wrap gap-2">
                         {renderButtons(activityReports)}
                     </div>
                 </div>
                 {/* Right Column */}
                 <div className="col-md-6">
-                    <p className="h3 g6">Planuri operaționale</p>
+                    <h3 className="h3 g6 mt-2">Planuri operaționale</h3>
                     <div className="d-flex flex-wrap gap-2">
                         {renderButtons(operationalPlans)}
                     </div>

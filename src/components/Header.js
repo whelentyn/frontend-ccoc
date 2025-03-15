@@ -94,7 +94,6 @@ const Header = () => {
                             </NavDropdown.Item>
                         </NavDropdown>
 
-                        <Nav.Link as={Link} to="/contact" className="h5-regular g6">Contact</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
 

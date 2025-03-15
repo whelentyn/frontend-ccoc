@@ -2,39 +2,31 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CardAnunturi.css";
+import he from "he";
+import { formatDate } from "../utils";
+
 
 const CardAnunturi = ({ items }) => {
     const navigate = useNavigate(); // Use React Router's useNavigate
 
-    // Define categories and their corresponding colors
-    const categories = [
-        { name: "Evenimente", color: "#5D5FEF" }, // Electric Iris
-        { name: "Resurse pentru studenți", color: "#E78147" }, // Coral Blaze
-        { name: "Oportunități", color: "#BAE313" }, // Lemon Zest
-        { name: "Prezentare", color: "#E74764" }, // Ruby Blush
-        { name: "Voluntariat", color: "#2C2FD5" }, // Electric Iris Focused
-    ];
-
-    // Helper function to randomly assign a category
-    const assignCategory = () => categories[Math.floor(Math.random() * categories.length)];
 
     return (
         <div className="d-flex flex-column gap-1 card-anunturi-wrapper">
             {items.map((item) => {
-                const category = assignCategory(); // Randomly assign a category
+                const decodedContent = he.decode(item.content);// Randomly assign a category
                 return (
                     <div
                         key={item.id}
-                        onClick={() => navigate(`/anunturi/${item.id}`, { state: { item } })} // Navigate to detail page
+                        onClick={() => navigate(`/anunturi/${item.slug}`, { state: { item } })}
                         className="card-anunturi-link"
-                        style={{ cursor: "pointer" }} // Add pointer cursor for better UX
+                        style={{ cursor: "pointer" }}
                     >
                         <div className="card" style={{ border: "none", background: "none", boxShadow: "none" }}>
                             <div className="card-body d-md-flex align-items-start flex-column flex-md-row">
                                 {/* Icon/Image */}
                                 <img
                                     className="card-anunturi-image"
-                                    src={item.image}
+                                    src={`https://ccoc.edicz.com${item.image}`}
                                     alt="Anunturi logo"
                                 />
                                 {/* Content */}
@@ -49,25 +41,36 @@ const CardAnunturi = ({ items }) => {
                                     }}
                                 >
                                     {/* Category and Date */}
-                                    <div className="d-flex align-items-center gap-2 mb-2">
-                                        <div
-                                            style={{
-                                                backgroundColor: category.color,
-                                                color: "white",
-                                                padding: "4px 12px",
-                                                borderRadius: "12px",
-                                                fontSize: "12px",
-                                                fontWeight: "bold",
-                                                display: "inline-block",
-                                            }}
-                                        >
-                                            <span className="body-regular">{category.name}</span>
+                                    <div className="d-flex justify-content-between align-items-start mb-2">
+                                        {/* Tags container: will wrap tags if needed */}
+                                        <div className="d-flex flex-wrap gap-2">
+                                            {item.tags.map((tag, index) => (
+                                                <div
+                                                    key={index}
+                                                    style={{
+                                                        backgroundColor: tag.hexColor,
+                                                        color: "#fff",
+                                                        padding: "4px 12px",
+                                                        borderRadius: "12px",
+                                                        fontSize: "12px",
+                                                        fontWeight: "bold",
+                                                        whiteSpace: "nowrap",
+                                                    }}
+                                                >
+                                                    <span className="body-regular">{tag.name}</span>
+                                                </div>
+                                            ))}
                                         </div>
-                                        <div className="body-regular g5">{item.date}</div>
+                                        {/* Date: always stays in the top right */}
+                                        <div className="body-regular g5" style={{ whiteSpace: "nowrap", paddingTop: "5px" }}>
+                                            {formatDate(item.publishDate)}
+                                        </div>
                                     </div>
+
+
                                     {/* Title */}
-                                    <div
-                                        className="h3 g6"
+                                    <h3
+                                        className="g6"
                                         style={{
                                             display: "-webkit-box",
                                             WebkitBoxOrient: "vertical",
@@ -77,7 +80,7 @@ const CardAnunturi = ({ items }) => {
                                         }}
                                     >
                                         {item.title}
-                                    </div>
+                                    </h3>
                                     {/* Description with Reduced Line Height */}
                                     <div
                                         className="body-regular g5"
@@ -89,9 +92,8 @@ const CardAnunturi = ({ items }) => {
                                             textOverflow: "ellipsis",
                                             lineHeight: "1.2", // Reduced line height
                                         }}
-                                    >
-                                        {item.description}
-                                    </div>
+                                        dangerouslySetInnerHTML={{ __html: decodedContent }}
+                                    />
                                 </div>
                             </div>
                         </div>

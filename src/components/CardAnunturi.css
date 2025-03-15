@@ -1,8 +1,8 @@
 .card-anunturi-image {
     aspect-ratio: 16 / 9; /* Constrain the image to a 16:9 ratio */
-    width: 100%; /* Full width on mobile */
-    max-width: 35%; /* Ensure consistent width on larger screens */
-    object-fit: cover; /* Crop the image to fit the aspect ratio */
+    width: 40%;
+    height: auto;
+    object-fit: cover;
     border-radius: 8px;
     transition: transform 0.3s ease;
     background: none;
@@ -10,20 +10,18 @@
 
 @media (max-width: 768px) {
     .card-anunturi-image {
-        max-width: 100%; /* Full width on smaller screens */
+        width: 100%; /* Full width on smaller screens */
         height: auto; /* Adjust height automatically */
     }
     .text-content {
-        margin-left: 0; /* Remove left margin on mobile */
         text-align: left; /* Align text to left */
         margin-left: 1px !important;
-    }
-}
-
-@media (min-width: 769px) {
-    .card-anunturi-image {
-        width: 35%; /* Maintain consistent width on larger screens */
-        height: auto;
+        word-wrap: normal;
+        word-break: normal;
+        overflow-wrap: break-word;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Ensure content is spaced properly */
     }
 }
 
@@ -31,5 +29,11 @@
 .card-anunturi-image:focus {
     transform: translateY(-1px); /* Slight lift effect on hover */
     box-shadow: 4px 4px 0 var(--lemon-zest-regular);
+}
+
+h3 {
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 

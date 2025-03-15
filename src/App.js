@@ -21,8 +21,8 @@ import Despre from "./pages/Despre/Despre";
 import AnunturiDetail from "./pages/Anunturi/AnunturiDetail";
 import ProiectePage from "./pages/ProiectePage";
 import AppointmentForm from "./pages/Formular/FormularCP";
+import { getArticles } from "./api/articles";
 
-// ScrollToTop Component
 const ScrollToTop = () => {
     const { pathname } = useLocation();
 
@@ -36,7 +36,7 @@ const ScrollToTop = () => {
 const App = () => {
     return (
         <Router>
-            <ScrollToTop /> {/* Add ScrollToTop component here */}
+            <ScrollToTop /> {/* Scrolls to top on route change */}
             <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
                 <div className="fixed-top" style={{ zIndex: 1030 }}>
                     <Header />
@@ -47,16 +47,15 @@ const App = () => {
                         <Route path="/servicii" element={<Servicii />} />
                         <Route path="/voluntariat" element={<Voluntariat />} />
                         <Route path="/anunturi" element={<Anunturi />} />
-                        <Route path="/anunturi/:id" element={<AnunturiDetail />} />
+                        <Route path="/anunturi/:slug" element={<AnunturiDetail />} />
                         <Route path="/evenimente" element={<Evenimente />} />
-                        <Route path="/contact" element={<Contact />} />
                         <Route path="/proiecte" element={<Proiecte />} />
                         <Route path="/despre/misiune-si-scop" element={<Despre />} />
                         <Route path="/despre/personal" element={<Personal />} />
                         <Route path="/despre/sefi-de-oficii" element={<SefiDeOficii />} />
                         <Route path="/despre/documente" element={<Documente />} />
                         <Route path="/proiecte/:projectId" element={<ProiectePage />} />
-                        <Route path="/servicii/formular" element={<AppointmentForm/>} />
+                        <Route path="/servicii/formular" element={<AppointmentForm />} />
                     </Routes>
                 </div>
                 <Footer style={{ flexShrink: 0 }} />

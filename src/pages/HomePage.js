@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Card, Carousel, Col, Container, Row } from "react-bootstrap";
 import anunturiImage from "../assets/anunturi.svg";
 import servicii_mainpage from "../assets/servicii_mainpage.svg";
@@ -8,6 +8,8 @@ import contact_mainpage from "../assets/contact_mainpage.svg";
 import imagine_carusel from "../assets/imagine_carusel.svg";
 import "./HomePage.css";
 import CardAnunturi from "../components/CardAnunturi";
+import {getArticles} from "../api/articles";
+import {getAllShortcuts} from "../api/shortcuts";
 
 const partners = [
     {
@@ -50,22 +52,42 @@ const institutionalPartners = [
     },
 ];
 
-const announcements = Array(4).fill(null).map((_, index) => ({
-    date: "12 Iulie 2024",
-    title: "Uneori este important să ne reconectăm cu natura",
-    description: `
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    `,
-    image: anunturiImage,
-    link: "#", // Replace with actual link
-}));
-
 const HomePage = () => {
+    const [announcements, setAnnouncements] = useState([]);
+    const [shortcuts, setShortcuts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const articles = await getArticles(4);
+                setAnnouncements(articles);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        const fetchShortcuts = async () => {
+            try {
+                const shortcutsData = await getAllShortcuts();
+                setShortcuts(shortcutsData);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchShortcuts();
+    }, []);
+
     return (
         <div style={{ marginTop: "-70px" }}>
             {/* Main Content */}
@@ -123,58 +145,21 @@ const HomePage = () => {
                     <div className="col-md-4">
                         <div className="g3 h6">INFORMAȚII UTILE</div>
                         <div style={{ marginTop: "20px" }} className="row row-cols-2 g-0">
-                            <div className="col text-center">
-                                <div className="d-flex flex-column align-items-center">
-                                    <a href="/servicii" className="svg-hover">
-                                        <img
-                                            className="svg-icon"
-                                            style={{ height: "150px", width: "150px" }}
-                                            src={servicii_mainpage}
-                                            alt="Servicii logo"
-                                        />
-                                    </a>
-                                    <p className="h5-regular g6 mt-2">Servicii</p>
+                            {shortcuts.map((shortcut) => (
+                                <div key={shortcut.id} className="col text-center">
+                                    <div className="d-flex flex-column align-items-center">
+                                        <a href={shortcut.link} className="svg-hover" target="_blank" rel="noopener noreferrer">
+                                            <img
+                                                className="svg-icon"
+                                                style={{ height: "150px", width: "150px", objectFit: "cover" }}
+                                                src={`https://ccoc.edicz.com${shortcut.image}`} // Ensure full URL
+                                                alt={shortcut.name}
+                                            />
+                                        </a>
+                                        <p className="h5-regular g6 mt-2">{shortcut.name}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="col text-center">
-                                <div className="d-flex flex-column align-items-center">
-                                    <a href="/proiecte" className="svg-hover">
-                                        <img
-                                            className="svg-icon"
-                                            style={{ height: "150px", width: "150px" }}
-                                            src={proiecte_mainpage}
-                                            alt="Proiecte logo"
-                                        />
-                                    </a>
-                                    <p className="h5-regular g6 mt-2">Proiecte</p>
-                                </div>
-                            </div>
-                            <div className="col text-center">
-                                <div className="d-flex flex-column align-items-center">
-                                    <a href="/student-office" className="svg-hover">
-                                        <img
-                                            className="svg-icon"
-                                            style={{ height: "150px", width: "150px" }}
-                                            src={studentoffice_mainpage}
-                                            alt="Student Office logo"
-                                        />
-                                    </a>
-                                    <p className="h5-regular g6 mt-2">Student Office</p>
-                                </div>
-                            </div>
-                            <div className="col text-center">
-                                <div className="d-flex flex-column align-items-center">
-                                    <a href="/contact" className="svg-hover">
-                                        <img
-                                            className="svg-icon"
-                                            style={{ height: "150px", width: "150px" }}
-                                            src={contact_mainpage}
-                                            alt="Contact logo"
-                                        />
-                                    </a>
-                                    <p className="h5-regular g6 mt-2">Contact</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                         <div className="row mt-5">
                             <div className="col-12">
