@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://ccoc.edicz.com/api/';
+const API_URL = 'https://dev.ccoc.edicz.com/api/';
+export const DOMAIN = 'https://dev.ccoc.edicz.com';
 
 const api = axios.create({
     baseURL: API_URL,

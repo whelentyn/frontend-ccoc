@@ -1,78 +1,24 @@
 /* Ensures the rich text content adapts well */
-.rich-text-content {
-    line-height: 1.6;
-    color: #555;
-}
 
-.rich-text-content h3 {
-    font-size: 20px;
-    margin-top: 20px;
-    color: #333;
-}
-
-.rich-text-content ul {
-    padding-left: 20px;
-}
-
-.rich-text-content li {
-    margin-bottom: 8px;
-}
-
-/* Image Container */
-.image-container {
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-/* Responsive Image with Constraint */
 .responsive-image {
     width: 100%;
-    max-width: 300px;
-    height: auto;
+    height: 100%;
     border-radius: 12px;
     object-fit: cover;
-}
-
-/* Triangle Design */
-.triangle-container {
-    position: relative;
-    margin-top: 20px;
-}
-
-.triangle {
-    width: 80px;
-    height: 80px;
-    position: absolute;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-}
-
-.green-triangle {
-    background-color: #28a745;
-    top: 0;
-    left: 20px;
-}
-
-.yellow-triangle {
-    background-color: #ffc107;
-    top: 20px;
-    left: 60px;
-}
-
-.light-green-triangle {
-    background-color: #8bc34a;
-    top: 40px;
-    left: 100px;
+    display: block;
+    margin: 0 auto; /* ensures horizontal centering */
 }
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
-    .triangle-container {
-        display: none; /* Hide triangles on small screens */
+    .responsive-image {
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    .responsive-image {
-        max-width: 250px;
+    .image-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
     }
 }

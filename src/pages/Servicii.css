@@ -1,17 +1,45 @@
-.custom-button {
-    display: inline-block;
-    background-color: var(--electric-iris-regular); /* Button background color */
-    color: #F5F5F5; /* Text color */
-    padding: 15px 20px; /* Button padding */
-    border: none; /* Remove border */
-    border-radius: 10px; /* Rounded corners */
-    text-align: center; /* Center the text */
-    text-decoration: none; /* Remove underline */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+.service-card {
+    background-color: #F5F5F5;
+    min-height: 300px;
 }
 
-.custom-button:hover, .custom-button:focus {
-    background-color: var(--electric-iris-focused );
-    box-shadow: 4px 4px 0 var(--lemon-zest-regular); /* More prominent shadow on hover */
+.service-image {
+    position: relative;
+    width: 25% !important;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.custom-button {
+    display: inline-block;
+    background-color: var(--electric-iris-regular);
+    width: 50%;
+    color: #F5F5F5;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.custom-button:hover,
+.custom-button:focus {
+    background-color: var(--electric-iris-focused);
+    box-shadow: 4px 4px 0 var(--lemon-zest-regular);
+}
+
+@media (max-width: 768px) {
+    .service-card {
+        min-height: 220px;
+        flex-direction: column;
+    }
+
+    .custom-button {
+        width: 75%;
+    }
 }

@@ -14,9 +14,11 @@ html {
     background-color: #FAFAFA; /* Default background */
 }
 
-.filter-button:hover {
-    background-color: var(--electric-iris-regular);
-    color: #FAFAFA;
+@media (min-width: 1024px) {
+    .filter-button:hover {
+        background-color: var(--electric-iris-regular);
+        color: #FAFAFA;
+    }
 }
 
 /* Active button state (when category is selected) */
@@ -39,9 +41,11 @@ html {
     transition: all 0.3s ease; /* Smooth hover transition */
 }
 
-.custom-pagination-button:hover {
-    background-color: var(--electric-iris-regular); /* Hover background color */
-    color: #fafafa; /* Hover text color */
+@media (min-width: 1024px) {
+    .custom-pagination-button:hover {
+        background-color: var(--electric-iris-regular); /* Hover background color */
+        color: #fafafa; /* Hover text color */
+    }
 }
 
 .custom-pagination-button.active {

@@ -5,15 +5,37 @@ import servicii_mainpage from "../assets/servicii_mainpage.svg";
 import proiecte_mainpage from "../assets/proiecte_mainpage.svg";
 import studentoffice_mainpage from "../assets/studentoffice_mainpage.svg";
 import contact_mainpage from "../assets/contact_mainpage.svg";
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {DOMAIN} from "../api";
+import {formatDate} from "../utils";
 
 const Voluntariat = ({ volunteerContent }) => {
+
     return (
-        <div className="container py-5">
-            <div className="h1 g6">
-                <h1>Voluntariat</h1>
-                <p className="g3 body-regular">Voluntariatul este o activitate foarte distractivă.</p>
-            </div>
+        <div style={{ marginTop: "-70px" }} className="container py-5">
+            <Carousel className="carousel-container">
+                <Carousel.Item>
+                    <img className="d-block w-100 rounded" src={imagine_carusel} alt="First slide" />
+                    <Carousel.Caption>
+                        <h3>Slide 1 Title</h3>
+                        <p>Discover your opportunities after graduation.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img className="d-block w-100 rounded" src={imagine_carusel} alt="Second slide" />
+                    <Carousel.Caption>
+                        <h3>Slide 2 Title</h3>
+                        <p>Join exciting projects and start your career.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img className="d-block w-100 rounded" src={imagine_carusel} alt="Third slide" />
+                    <Carousel.Caption>
+                        <h3>Slide 3 Title</h3>
+                        <p>Connect with inspiring people and ideas.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+            </Carousel>
 
             {/* Announcements Section */}
             <div className="row" style={{ marginTop: "50px" }}>
@@ -70,33 +92,9 @@ const Voluntariat = ({ volunteerContent }) => {
                         </div>
                     </div>
                 </div>
-
-                {/* Carousel Section */}
-                <Carousel className="carousel-container">
-                    <Carousel.Item>
-                        <img className="d-block w-100 rounded" src={imagine_carusel} alt="First slide" />
-                        <Carousel.Caption>
-                            <h3>Slide 1 Title</h3>
-                            <p>Discover your opportunities after graduation.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img className="d-block w-100 rounded" src={imagine_carusel} alt="Second slide" />
-                        <Carousel.Caption>
-                            <h3>Slide 2 Title</h3>
-                            <p>Join exciting projects and start your career.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img className="d-block w-100 rounded" src={imagine_carusel} alt="Third slide" />
-                        <Carousel.Caption>
-                            <h3>Slide 3 Title</h3>
-                            <p>Connect with inspiring people and ideas.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
             </div>
         </div>
+
     );
 };
 

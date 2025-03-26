@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./PersonaCard.css";
 import { Modal } from 'react-bootstrap';
+import he from "he";
 
 const PersonaCard = ({ person, categories }) => {
     const [showModal, setShowModal] = useState(false);
@@ -32,15 +33,13 @@ const PersonaCard = ({ person, categories }) => {
                     {/* Badges */}
                     <div className="mt-2 mb-2">
                         {person.badges.map((badge, badgeIndex) => {
-                            const badgeCategory = categories.find(
-                                (cat) => cat.name === badge
-                            );
+                            const badgeCategory = categories.find((cat) => cat.name === badge);
                             return (
                                 <span
                                     className="badge text-white mt-1 me-1 body-regular"
                                     key={badgeIndex}
                                     style={{
-                                        backgroundColor: `var(${badgeCategory?.color})`,
+                                        backgroundColor: badgeCategory ? badgeCategory.hexColor : "#888",
                                     }}
                                 >
                                     {badge}
@@ -54,6 +53,21 @@ const PersonaCard = ({ person, categories }) => {
                     <div className="body-regular g4">
                         <i className="bi bi-geo-alt me-2"></i>
                         {person.location}
+                    </div>
+                    {/* Phone */}
+                    <div className="body-regular g4">
+                        <i className="bi bi-telephone me-2"></i>
+                        {person.phone}
+                    </div>
+                    {/* Email */}
+                    <div className="body-regular g4">
+                        <i className="bi bi-envelope me-2"></i>
+                        <a
+                            href={`mailto:${person.email}`}
+                            className="text-decoration-none"
+                        >
+                            {person.email}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -79,15 +93,13 @@ const PersonaCard = ({ person, categories }) => {
                     {/* Badges */}
                     <div className="text-center mb-3">
                         {person.badges.map((badge, badgeIndex) => {
-                            const badgeCategory = categories.find(
-                                (cat) => cat.name === badge
-                            );
+                            const badgeCategory = categories.find((cat) => cat.name === badge);
                             return (
                                 <span
                                     className="badge text-white mt-1 me-1 body-regular"
                                     key={badgeIndex}
                                     style={{
-                                        backgroundColor: `var(${badgeCategory?.color})`,
+                                        backgroundColor: badgeCategory ? badgeCategory.hexColor : "#888",
                                     }}
                                 >
                                     {badge}
@@ -116,10 +128,10 @@ const PersonaCard = ({ person, categories }) => {
                                 {person.email}
                             </a>
                         </p>
-                        {/* Description as InnerHTML */}
+                        {/* Description as InnerHTML with `he` decoding */}
                         <div
                             className="body-regular g4"
-                            dangerouslySetInnerHTML={{ __html: person.description }}
+                            dangerouslySetInnerHTML={{ __html: he.decode(person.description) }}
                         ></div>
                     </div>
                 </Modal.Body>

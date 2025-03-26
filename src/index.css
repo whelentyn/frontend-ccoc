@@ -112,7 +112,7 @@ h5 {
 @media (max-width: 480px) {
 
   .h5-regular, .h6, h5 {
-    font-size: 14px !important;
+    font-size: 12px !important;
   }
 
   .body-regular {

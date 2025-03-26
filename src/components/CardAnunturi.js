@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./CardAnunturi.css";
 import he from "he";
 import { formatDate } from "../utils";
+import {DOMAIN} from "../api";
 
 
 const CardAnunturi = ({ items }) => {
@@ -26,7 +27,7 @@ const CardAnunturi = ({ items }) => {
                                 {/* Icon/Image */}
                                 <img
                                     className="card-anunturi-image"
-                                    src={`https://ccoc.edicz.com${item.image}`}
+                                    src={`${DOMAIN}${item.image}`}
                                     alt="Anunturi logo"
                                 />
                                 {/* Content */}

@@ -1,209 +1,104 @@
-import React from "react";
-import "./Servicii.css"
+import React, { useEffect, useState } from "react";
+import "./Servicii.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import star from '../assets/star.svg';
-import square from '../assets/square.svg';
-import triangle from '../assets/triangle.svg';
+import { getAllServices } from "../api/servicii";
+import { getPageBySlug } from "../api/pages"; // adjust the path if needed
+import { DOMAIN } from "../api";
+import he from "he";
+
+const colorVariables = [
+    "var(--electric-iris-focused)",
+    "var(--coral-blaze-focused)",
+    "var(--lemon-zest-focused)",
+    "var(--ruby-blush-focused)",
+];
+
+const getRandomColor = () => {
+    const index = Math.floor(Math.random() * colorVariables.length);
+    return colorVariables[index];
+};
 
 const ServicesPage = () => {
+    const [services, setServices] = useState([]);
+    const [pageContent, setPageContent] = useState(null);
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const data = await getAllServices();
+                const coloredServices = data.map(service => ({
+                    ...service,
+                    color: getRandomColor(),
+                }));
+                setServices(coloredServices);
+            } catch (error) {
+                console.error("Error fetching services:", error);
+            }
+        };
+
+        const fetchPageContent = async () => {
+            try {
+                const page = await getPageBySlug("servicii");
+                setPageContent(page);
+            } catch (error) {
+                console.error("Error fetching page content:", error);
+            }
+        };
+
+        fetchServices();
+        fetchPageContent();
+    }, []);
+
+    const pageTitle = he.decode(
+        pageContent?.name?.trim() || "Servicii CCOC"
+    );
+
+    const pageSubtitle = he.decode(
+        pageContent?.shortDescription?.trim() || "Descoperă serviciile de personal CCOC. Află de serviciile de voluntariat în:"
+    );
+
     return (
         <div className="container py-5">
-            <div className="h1 g6">
-                <h1>Servicii CCOC</h1>
-                <p className="g3 body-regular">Descoperă serviciile de personal CCOC. Află de serviciile de voluntariat în:</p>
+            <div className="mb-5">
+                <h1 className="g6">{pageTitle}</h1>
+                <p className="g3 body-regular">{pageSubtitle}</p>
             </div>
-            <div className="row mb-4">
-                <div className="col-md-6">
-                    <div className="row align-items-stretch" style={{ height: "100%", borderRadius: "20px", marginRight: "3px", backgroundColor: "#F5F5F5" }}>
-                        <div
-                            className="col-md-4"
-                            style={{
-                                position: "relative",
-                                backgroundColor: "var(--coral-blaze-focused)",
-                                borderTopLeftRadius: "15px",
-                                borderBottomLeftRadius: "15px",
-                                height: "100%", // Ensure the background fills the entire row
-                                width: "25%",
-                                overflow: "hidden", // Ensures the image stays within the rounded corners
-                            }}
-                        >
+            <div className="row gy-4">
+                {services.map((service, index) => (
+                    <div className="col-md-6" key={index}>
+                        <div className="d-flex h-100 flex-row rounded overflow-hidden service-card">
                             <div
+                                className="flex-shrink-0 service-image"
                                 style={{
-                                    position: "absolute",
-                                    top: 0,
-                                    left: 0,
-                                    width: "100%",
-                                    height: "100%",
-                                    backgroundImage: `url(${star})`, // Replace with your SVG file path
-                                    backgroundSize: "cover", // Ensures the image covers the entire background
-                                    backgroundPosition: "center", // Centers the image
-                                    borderTopLeftRadius: "15px", // Match the parent div's corners
-                                    borderBottomLeftRadius: "15px", // Match the parent div's corners
+                                    backgroundColor: service.color,
+                                    backgroundImage: `url(${DOMAIN}${service.image})`,
+                                    backgroundSize: "cover",
+                                    backgroundPosition: "center",
+                                    width: "100px",
                                 }}
                             ></div>
-                        </div>
-                        <div className="col-md-8 d-flex flex-column justify-content-between" style={{ height: "100%" }}>
-                            <div style={{ marginTop: "25px" }}>
-                                <h3 className="g6 h3">Consiliere psihologică</h3>
-                                <p className="body-regular g6">
-                                    Oferim suport psihologic pentru cei aflați care se confruntă cu anxietate, stres sau traume,
-                                    ajutându-i să-și regăsească echilibrul și bunăstarea emoțională.
-                                </p>
-                                <a
-                                    style={{ marginTop: "70px" }}
-                                    href="/servicii/formular"
-                                    className="custom-button h5-regular"
-                                >
-                                    Fă o programare!
-                                </a>
+                            <div className="p-4 d-flex flex-column justify-content-between flex-grow-1">
+                                <div>
+                                    <h3 className="g6 h3">{service.name}</h3>
+                                    <div
+                                        className="body-regular g6"
+                                        dangerouslySetInnerHTML={{ __html: service.description }}
+                                    ></div>
+                                </div>
+                                {service.formLink && (
+                                    <a
+                                        href={service.formLink}
+                                        className="custom-button h5-regular mt-3"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Fă o programare!
+                                    </a>
+                                )}
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div className="col-md-6">
-                    <div className="row align-items-stretch" style={{ height: "100%", borderRadius: "15px", marginRight: "3px", backgroundColor: "#F5F5F5" }}>
-                        <div
-                            className="col-md-4"
-                            style={{
-                                position: "relative", // Allows layering
-                                backgroundColor: "var(--lemon-zest-focused)",
-                                borderTopLeftRadius: "15px",
-                                borderBottomLeftRadius: "15px",
-                                height: "100%", // Ensure the background fills the entire row
-                                width: "25%",
-                                overflow: "hidden", // Ensures the image stays within the rounded corners
-                            }}
-                        >
-                            <div
-                                style={{
-                                    position: "absolute",
-                                    top: 0,
-                                    left: 0,
-                                    width: "100%",
-                                    height: "100%",
-                                    backgroundImage: `url(${square})`, // Replace with your SVG file path
-                                    backgroundSize: "cover", // Ensures the image covers the entire background
-                                    backgroundPosition: "center", // Centers the image
-                                    borderTopLeftRadius: "15px", // Match the parent div's corners
-                                    borderBottomLeftRadius: "15px", // Match the parent div's corners
-                                }}
-                            ></div>
-                        </div>
-                        <div className="col-md-8 d-flex flex-column justify-content-between" style={{ height: "100%", borderRadius: "15px", marginRight: "3px", backgroundColor: "#F5F5F5" }}>
-                            <div style={{ marginTop: "25px" }}>
-                                <h3 className="g6 h3">Consiliere psihologică</h3>
-                                <p className="body-regular g6">
-                                    Oferim suport psihologic pentru cei aflați care se confruntă cu anxietate, stres sau traume,
-                                    ajutându-i să-și regăsească echilibrul și bunăstarea emoțională.
-                                </p>
-                                <a
-                                    style={{ marginTop: "90px" }}
-                                    href="#"
-                                    className="custom-button h5-regular"
-                                >
-                                    Fă o programare!
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-md-6">
-                    <div className="row align-items-stretch" style={{ height: "100%", borderRadius: "15px", marginRight: "3px", backgroundColor: "#F5F5F5" }}>
-                        <div
-                            className="col-md-4"
-                            style={{
-                                position: "relative", // Allows layering
-                                backgroundColor: "var(--ruby-blush-focused)",
-                                borderTopLeftRadius: "15px",
-                                borderBottomLeftRadius: "15px",
-                                height: "100%", // Ensure the background fills the entire row
-                                width: "25%",
-                                overflow: "hidden", // Ensures the image stays within the rounded corners
-                            }}
-                        >
-                            <div
-                                style={{
-                                    position: "absolute",
-                                    top: 0,
-                                    left: 0,
-                                    width: "100%",
-                                    height: "100%",
-                                    backgroundImage: `url(${triangle})`, // Replace with your SVG file path
-                                    backgroundSize: "cover", // Ensures the image covers the entire background
-                                    backgroundPosition: "center", // Centers the image
-                                    borderTopLeftRadius: "15px", // Match the parent div's corners
-                                    borderBottomLeftRadius: "15px", // Match the parent div's corners
-                                }}
-                            ></div>
-                        </div>
-                        <div className="col-md-8 d-flex flex-column justify-content-between" style={{ height: "100%", borderRadius: "15px", marginRight: "3px", backgroundColor: "#F5F5F5" }}>
-                            <div style={{ marginTop: "25px" }}>
-                                <h3 className="g6 h3">Consiliere psihologică</h3>
-                                <p className="body-regular g6">
-                                    Oferim suport psihologic pentru cei aflați care se confruntă cu anxietate, stres sau traume,
-                                    ajutându-i să-și regăsească echilibrul și bunăstarea emoțională.
-                                </p>
-                                <a
-                                    style={{ marginTop: "90px" }}
-                                    href="#"
-                                    className="custom-button h5-regular"
-                                >
-                                    Fă o programare!
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-6">
-                    <div className="row align-items-stretch" style={{ height: "100%", borderRadius: "15px", marginRight: "3px", backgroundColor: "#F5F5F5" }}>
-                        <div
-                            className="col-md-4"
-                            style={{
-                                position: "relative", // Allows layering
-                                backgroundColor: "#2E3192",
-                                borderTopLeftRadius: "15px",
-                                borderBottomLeftRadius: "15px",
-                                height: "100%", // Ensure the background fills the entire row
-                                width: "25%",
-                                overflow: "hidden", // Ensures the image stays within the rounded corners
-                            }}
-                        >
-                            <div
-                                style={{
-                                    position: "absolute",
-                                    top: 0,
-                                    left: 0,
-                                    width: "100%",
-                                    height: "100%",
-                                    backgroundImage: `url(${star})`, // Replace with your SVG file path
-                                    backgroundSize: "cover", // Ensures the image covers the entire background
-                                    backgroundPosition: "center", // Centers the image
-                                    borderTopLeftRadius: "15px", // Match the parent div's corners
-                                    borderBottomLeftRadius: "15px", // Match the parent div's corners
-                                }}
-                            ></div>
-                        </div>
-                        <div className="col-md-8 d-flex flex-column justify-content-between" style={{ height: "100%" }}>
-                            <div style={{ marginTop: "25px" }}>
-                                <h3 className="g6 h3">Consiliere psihologică</h3>
-                                <p className="body-regular g6">
-                                    Oferim suport psihologic pentru cei aflați care se confruntă cu anxietate, stres sau traume,
-                                    ajutându-i să-și regăsească echilibrul și bunăstarea emoțională.
-                                </p>
-                                <a
-                                    style={{ marginTop: "90px" }}
-                                    href="#"
-                                    className="custom-button h5-regular"
-                                >
-                                    Fă o programare!
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     );

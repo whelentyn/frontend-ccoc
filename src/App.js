@@ -10,13 +10,9 @@ import HomePage from "./pages/HomePage";
 import Servicii from "./pages/Servicii";
 import Voluntariat from "./pages/Voluntariat";
 import Anunturi from "./pages/Anunturi/Anunturi";
-import Evenimente from "./pages/Evenimente";
-import Contact from "./pages/Contact";
-import MisiuneSiScop from "./pages/Despre/Misiune";
 import Personal from "./pages/Despre/Personal";
 import SefiDeOficii from "./pages/Despre/SefiOficii";
 import Documente from "./pages/Despre/Documente";
-import Proiecte from "./pages/Proiecte";
 import Despre from "./pages/Despre/Despre";
 import AnunturiDetail from "./pages/Anunturi/AnunturiDetail";
 import ProiectePage from "./pages/ProiectePage";
@@ -48,13 +44,12 @@ const App = () => {
                         <Route path="/voluntariat" element={<Voluntariat />} />
                         <Route path="/anunturi" element={<Anunturi />} />
                         <Route path="/anunturi/:slug" element={<AnunturiDetail />} />
-                        <Route path="/evenimente" element={<Evenimente />} />
-                        <Route path="/proiecte" element={<Proiecte />} />
                         <Route path="/despre/misiune-si-scop" element={<Despre />} />
                         <Route path="/despre/personal" element={<Personal />} />
                         <Route path="/despre/sefi-de-oficii" element={<SefiDeOficii />} />
                         <Route path="/despre/documente" element={<Documente />} />
-                        <Route path="/proiecte/:projectId" element={<ProiectePage />} />
+                        <Route path="/proiecte/:slug" element={<ProiectePage />} />
+                        <Route path="/evenimente/:slug" element={<ProiectePage />} />
                         <Route path="/servicii/formular" element={<AppointmentForm />} />
                     </Routes>
                 </div>

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ccoc_logo from '../assets/logo_ccoc.svg';
 import upt_logo from '../assets/logo_upt.svg';
 import "./Footer.css"
-
 const Footer = () => {
+
     return (
         <footer className="footer bg-light py-4">
             <div className="container">
@@ -29,13 +29,13 @@ const Footer = () => {
                             </div>
                         </div>
                         <div style={{ marginTop: '5px' }} className="d-flex">
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="me-4">
+                            <a href="https://www.facebook.com/CCOC.UPT" target="_blank" rel="noopener noreferrer" className="me-4">
                                 <i className="fab fa-facebook g6 fa-lg"></i>
                             </a>
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="me-4">
+                            <a href="https://www.instagram.com/ccocupt/" target="_blank" rel="noopener noreferrer" className="me-4">
                                 <i className="fab fa-instagram g6 fa-lg"></i>
                             </a>
-                            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="me-4">
+                            <a href="https://www.tiktok.com/@ccocupt" target="_blank" rel="noopener noreferrer" className="me-4">
                                 <i className="fab fa-tiktok g6 fa-lg"></i>
                             </a>
                         </div>
@@ -59,17 +59,17 @@ const Footer = () => {
                             {/* First Column */}
                             <div className="col-6">
                                 <ul className="list-unstyled">
-                                    <li><a href="#servicii" className="text-decoration-none body-regular g6">Servicii CCOC</a></li>
-                                    <li><a href="#proiecte" className="text-decoration-none body-regular g6">Proiecte</a></li>
-                                    <li><a href="#articole" className="text-decoration-none body-regular g6">Articole</a></li>
+                                    <li><a href="/servicii" className="text-decoration-none body-regular g6">Servicii CCOC</a></li>
+                                    <li><a href="/despre/misiune-si-scop" className="text-decoration-none body-regular g6">Despre</a></li>
+                                    <li><a href="/anunturi" className="text-decoration-none body-regular g6">Articole</a></li>
                                 </ul>
                             </div>
                             {/* Second Column */}
                             <div className="col-6">
                                 <ul className="list-unstyled">
-                                    <li><a href="#echipa" className="text-decoration-none body-regular g6">Echipă</a></li>
-                                    <li><a href="#student-office" className="text-decoration-none body-regular g6">Student Office</a></li>
-                                    <li><a href="#despre" className="text-decoration-none body-regular g6">Despre</a></li>
+                                    <li><a href="/despre/personal" className="text-decoration-none body-regular g6">Echipă</a></li>
+                                    <li><a href="https://www.instagram.com/student.office.upt/" className="text-decoration-none body-regular g6">Student Office</a></li>
+                                    <li><a href="/voluntariat" className="text-decoration-none body-regular g6">Voluntariat</a></li>
                                 </ul>
                             </div>
                         </div>

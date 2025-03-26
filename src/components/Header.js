@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './Header.css';
 import ccoc_logo from '../assets/logo_ccoc.svg';
 import upt_logo from '../assets/logo_upt.svg';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import {getAllProjects} from "../api/projects";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -11,6 +12,21 @@ const Header = () => {
     const handleToggle = () => {
         setMenuOpen(!menuOpen);
     };
+
+    const [projects, setProjects] = useState([]);
+
+    useEffect(() => {
+        const fetchProjects = async () => {
+            try {
+                const data = await getAllProjects();
+                setProjects(data);
+            } catch (error) {
+                console.error('Failed to fetch projects:', error);
+            }
+        };
+
+        fetchProjects();
+    }, []);
 
     return (
         <Navbar expand="lg" className="p-0">
@@ -70,18 +86,18 @@ const Header = () => {
                             id="evenimente-dropdown"
                             className="animated-dropdown"
                         >
-                            <NavDropdown.Item as={Link} to="/evenimente/zilele-carierei" className="dropdown-item">
-                                Zilele Carierei
-                            </NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/evenimente/zilele-consilierii" className="dropdown-item">
-                                Zilele Consilierii
-                            </NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/evenimente/sexed" className="dropdown-item">
-                                SexEd
-                            </NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/evenimente/connecting-bridges" className="dropdown-item">
-                                Connecting Bridges
-                            </NavDropdown.Item>
+                            {projects
+                                .filter(project => project.type === 'eveniment')
+                                .map(project => (
+                                    <NavDropdown.Item
+                                        as={Link}
+                                        to={`/evenimente/${project.slug}`}
+                                        className="dropdown-item"
+                                        key={project.title}
+                                    >
+                                        {project.title}
+                                    </NavDropdown.Item>
+                                ))}
                         </NavDropdown>
 
                         <NavDropdown
@@ -89,9 +105,18 @@ const Header = () => {
                             id="proiecte-dropdown"
                             className="animated-dropdown"
                         >
-                            <NavDropdown.Item as={Link} to="/proiecte/fdi" className="dropdown-item">
-                                FDI
-                            </NavDropdown.Item>
+                            {projects
+                                .filter(project => project.type === 'proiect')
+                                .map(project => (
+                                    <NavDropdown.Item
+                                        as={Link}
+                                        to={`/proiecte/${project.slug}`}
+                                        className="dropdown-item"
+                                        key={project.title}
+                                    >
+                                        {project.title}
+                                    </NavDropdown.Item>
+                                ))}
                         </NavDropdown>
 
                     </Nav>

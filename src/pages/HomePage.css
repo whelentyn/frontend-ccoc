@@ -52,21 +52,21 @@ body {
 }
 .main-image {
     z-index: 3;
-    transform: rotate(0deg);
-    top: 0;
-    left: 0;
+    transform: rotate(-3deg);
+    top: -40px;
+    left: -70px;
 }
 .middle-image {
     z-index: 2;
     transform: rotate(-5deg);
-    top: 10px;
-    left: 10px;
+    top: -20px;
+    left: 100px;
 }
 .back-image {
     z-index: 1;
     transform: rotate(5deg);
-    top: 20px;
-    left: 20px;
+    top: 40px;
+    left: 200px;
 }
 
 /* SVG Hover Effects */
@@ -110,5 +110,24 @@ body {
     /* Optional: adjust negative top margin for main container if needed */
     .homepage-container {
         margin-top: 0 !important;
+    }
+
+    .main-image {
+        z-index: 3;
+        transform: rotate(0deg);
+        top: 0px;
+        left: 0px;
+    }
+    .middle-image {
+        z-index: 2;
+        transform: rotate(0deg);
+        top: 0px;
+        left: 0px;
+    }
+    .back-image {
+        z-index: 1;
+        transform: rotate(0deg);
+        top: 0px;
+        left: 0px;
     }
 }

@@ -72,16 +72,14 @@ html, body {
 /* Mobile View Styles */
 @media (max-width: 1127px) {
 
+    .navbar-nav {
+        align-items: flex-start !important; /* Keep items aligned */
+        padding-left: 12px !important;
+    }
+
     .navbar {
         height: 60px; /* Force navbar to stay the same height */
         display: flex;
-        align-items: center; /* Keep items aligned */
-    }
-
-    .navbar-brand {
-        height: 60px; /* Match navbar height */
-        display: flex;
-        align-items: center; /* Center logo vertically */
     }
 
     .navbar-brand img {
@@ -96,6 +94,12 @@ html, body {
         left: 0;
         width: 100%;
         background: #FAFAFA; /* Ensure background consistency */
+    }
+
+    .dropdown-item {
+        all: unset; /* Resets all styles */
+        display: block; /* Ensures it remains visible */
+        width: auto; /* Allows natural width */
     }
 
     .navbar-toggler {

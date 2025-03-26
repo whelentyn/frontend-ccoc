@@ -1,24 +1,49 @@
 .filter-button-personal {
     display: inline-block;
     padding: 10px 20px;
-    color: var(--electric-iris-regular); /* Default text color */
-    border: 2px solid var(--electric-iris-regular); /* Border color */
-    border-radius: 55px; /* Rounded corners */
+    color: var(--electric-iris-regular);
+    border: 2px solid var(--electric-iris-regular);
+    border-radius: 55px;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s ease; /* Smooth transition */
-    background-color: #FAFAFA; /* Default background color */
+    transition: all 0.3s ease;
+    background-color: #FAFAFA;
 }
 
-.filter-button-personal:hover {
-    background-color: var(--electric-iris-regular); /* Change background on hover */
-    color: #FAFAFA; /* Change text color on hover */
+@media (min-width: 1024px) {
+    .filter-button-personal:hover {
+        background-color: var(--electric-iris-regular);
+        color: #FAFAFA;
+    }
 }
 
 .filter-button-personal.active {
-    background-color: var(--electric-iris-regular); /* Active state background */
-    color: #FAFAFA; /* Active state text color */
-    border-color: var(--electric-iris-regular); /* Keep border consistent */
+    background-color: var(--electric-iris-regular);
+    color: #FAFAFA;
+    border-color: var(--electric-iris-regular);
 }
 
+@media (max-width: 768px) {
+    .filter-button-personal {
+        display: none;
+    }
 
+    .filter-button-personal-mobile {
+        font-size: 14px;
+        padding: 6px 12px;
+        display: inline-block;
+        color: var(--electric-iris-regular);
+        border: 2px solid var(--electric-iris-regular);
+        border-radius: 55px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background-color: #FAFAFA;
+    }
+
+    .filter-button-personal-mobile.active {
+        background-color: var(--electric-iris-regular);
+        color: #FAFAFA;
+        border-color: var(--electric-iris-regular);
+    }
+}

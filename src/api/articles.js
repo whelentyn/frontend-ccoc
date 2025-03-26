@@ -43,3 +43,19 @@ export const getArticleBySlug = async (slug) => {
         throw error;
     }
 };
+
+export const getArticleByString = async (searchString) => {
+    if (!searchString) {
+        throw new Error("parameter is required.");
+    }
+
+    try {
+        const encodedString = encodeURIComponent(searchString); // encodes space as %20
+        const url = `/Articles/GetByString?searchString=${encodedString}`;
+        const response = await api.get(url);
+        return response.data;
+    } catch (error) {
+        console.error(`Error fetching article with "${searchString}":`, error);
+        throw error;
+    }
+};
