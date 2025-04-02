@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+    image: 188.34.177.197:32000/ccoc-frontend:latest
+    container_name: ccoc-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_API_URL=https://dev.ccoc.edicz.com
