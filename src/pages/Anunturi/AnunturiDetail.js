@@ -30,7 +30,7 @@ const AnunturiDetail = () => {
                 setTimeout(() => {
                     setArticle(response);
                     setLoading(false);
-                }, 500);
+                }, 200);
             } catch (error) {
                 setLoading(false);
             }
@@ -119,44 +119,43 @@ const AnunturiDetail = () => {
                         className="body-regular g4"
                         dangerouslySetInnerHTML={{ __html: decodedContent }}
                     ></div>
+                    {/* Related Articles Section */}
+                    {relatedArticles.length > 0 && (
+                        <div className="recent-articles mt-5">
+                            <div className="mb-4 g3 h6">ARTICOLE SIMILARE</div>
+                            <div className="row">
+                                {relatedArticles.map((article) => (
+                                    <div
+                                        className="col-md-4 mb-4"
+                                        key={article.id}
+                                        onClick={() => {
+                                            setArticle(null);
+                                            navigate(`/anunturi/${article.slug}`, { state: { item: article } });
+                                        }}
+                                        style={{ cursor: "pointer" }}
+                                    >
+                                        <div className="card-altele h-100 shadow-sm">
+                                            <img
+                                                src={`${DOMAIN}${article.image}`}
+                                                alt={article.title}
+                                                className="card-img-top"
+                                                style={{
+                                                    height: "150px",
+                                                    objectFit: "cover",
+                                                }}
+                                            />
+                                            <div className="card-body">
+                                                <div className="body-regular g5">{formatDate(article.publishDate)}</div>
+                                                <h4 className="g6">{article.title}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
-
-            {/* Related Articles Section */}
-            {relatedArticles.length > 0 && (
-                <div style={{ marginLeft: "-30px", marginRight: "-30px" }} className="recent-articles mt-5 px-4 px-md-4">
-                    <div className="mb-4 g3 h6">ARTICOLE SIMILARE</div>
-                    <div className="row">
-                        {relatedArticles.map((article) => (
-                            <div
-                                className="col-md-4 mb-4"
-                                key={article.id}
-                                onClick={() => {
-                                    setArticle(null);
-                                    navigate(`/anunturi/${article.slug}`, { state: { item: article } });
-                                }}
-                                style={{ cursor: "pointer" }}
-                            >
-                                <div className="card-altele h-100 shadow-sm">
-                                    <img
-                                        src={`${DOMAIN}${article.image}`}
-                                        alt={article.title}
-                                        className="card-img-top"
-                                        style={{
-                                            height: "150px",
-                                            objectFit: "cover",
-                                        }}
-                                    />
-                                    <div className="card-body">
-                                        <div className="body-regular g5">{formatDate(article.publishDate)}</div>
-                                        <div className="g6 h5">{article.title}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

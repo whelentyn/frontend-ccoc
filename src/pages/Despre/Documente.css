@@ -63,8 +63,10 @@
     margin-bottom: 10px;
 }
 
-.doc-button:hover {
-    background-color: #5D5FEF;
-    color: #fff;
+@media (hover: hover) and (pointer: fine) {
+    .doc-button:hover {
+        background-color: #5D5FEF;
+        color: #fff;
+    }
 }
 

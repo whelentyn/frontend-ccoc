@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./Servicii.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getAllServices } from "../api/servicii";
-import { getPageBySlug } from "../api/pages"; // adjust the path if needed
+import { getPageBySlug } from "../api/pages";
 import { DOMAIN } from "../api";
 import he from "he";
+import { Spinner } from "react-bootstrap";
 
 const colorVariables = [
     "var(--electric-iris-focused)",
@@ -21,32 +22,31 @@ const getRandomColor = () => {
 const ServicesPage = () => {
     const [services, setServices] = useState([]);
     const [pageContent, setPageContent] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchServices = async () => {
-            try {
-                const data = await getAllServices();
-                const coloredServices = data.map(service => ({
+        const fetchAll = async () => {
+            const [servicesRes, pageRes] = await Promise.allSettled([
+                getAllServices(),
+                getPageBySlug("servicii"),
+            ]);
+
+            if (servicesRes.status === "fulfilled") {
+                const coloredServices = servicesRes.value.map((service) => ({
                     ...service,
                     color: getRandomColor(),
                 }));
                 setServices(coloredServices);
-            } catch (error) {
-                console.error("Error fetching services:", error);
             }
+
+            if (pageRes.status === "fulfilled") {
+                setPageContent(pageRes.value);
+            }
+
+            setTimeout(() => setLoading(false), 500);
         };
 
-        const fetchPageContent = async () => {
-            try {
-                const page = await getPageBySlug("servicii");
-                setPageContent(page);
-            } catch (error) {
-                console.error("Error fetching page content:", error);
-            }
-        };
-
-        fetchServices();
-        fetchPageContent();
+        fetchAll();
     }, []);
 
     const pageTitle = he.decode(
@@ -54,8 +54,19 @@ const ServicesPage = () => {
     );
 
     const pageSubtitle = he.decode(
-        pageContent?.shortDescription?.trim() || "Descoperă serviciile de personal CCOC. Află de serviciile de voluntariat în:"
+        pageContent?.shortDescription?.trim() ||
+        "Descoperă serviciile de personal CCOC. Află de serviciile de voluntariat în:"
     );
+
+    if (loading) {
+        return (
+            <div className="d-flex justify-content-center align-items-center vh-100">
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Se încarcă...</span>
+                </Spinner>
+            </div>
+        );
+    }
 
     return (
         <div className="container py-5">

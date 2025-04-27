@@ -2,34 +2,47 @@ import React, { useEffect, useState } from "react";
 import "./Despre.css";
 import { getPageBySlug } from "../../api/pages";
 import he from "he";
-import {DOMAIN} from "../../api"; // decode HTML entities
+import { DOMAIN } from "../../api";
+import { Spinner } from "react-bootstrap";
 
 const Despre = () => {
     const [pageContent, setPageContent] = useState(null);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchPageContent = async () => {
             try {
                 const content = await getPageBySlug("despre/misiune-si-scop");
                 setPageContent(content);
+                setTimeout(() => setLoading(false), 200);
             } catch (err) {
                 setError(err.message);
+                setLoading(false);
             }
         };
 
         fetchPageContent();
     }, []);
 
-    if (error) return <div className="text-danger">Eroare: {error}</div>;
-    if (!pageContent) return <div>Se încarcă...</div>;
+    if (loading) {
+        return (
+            <div className="d-flex justify-content-center align-items-center vh-100">
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+            </div>
+        );
+    }
+
+    if (error) return <div className="text-danger text-center mt-4">Eroare: {error}</div>;
 
     const {
         name: title,
         shortDescription: subtitle,
         description,
         images,
-    } = pageContent;
+    } = pageContent || {};
 
     const imageUrl = images?.[0] ? `${DOMAIN}${images[0]}` : null;
 
@@ -47,7 +60,7 @@ const Despre = () => {
                             subtitle && subtitle.trim() !== ""
                                 ? subtitle
                                 : "Descoperă mai multe despre activitatea noastră"
-                        )
+                        ),
                     }}
                 ></p>
 
@@ -59,15 +72,12 @@ const Despre = () => {
             </div>
 
             <div className="row align-items-start">
-                {/* Left Column - Dynamic Content */}
                 <div className="col-lg-8">
                     <div
                         className="body-regular g4 rich-text-content"
                         dangerouslySetInnerHTML={{ __html: he.decode(description) }}
                     ></div>
                 </div>
-
-                {/* Right Column - Desktop Image */}
                 <div className="col-lg-4 d-none d-md-flex flex-column align-items-end">
                     {imageUrl && (
                         <div className="image-container">
@@ -78,7 +88,6 @@ const Despre = () => {
             </div>
         </div>
     );
-
 };
 
 export default Despre;

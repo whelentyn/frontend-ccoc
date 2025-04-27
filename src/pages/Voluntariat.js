@@ -68,7 +68,7 @@ const Voluntariat = ({ volunteerContent }) => {
                         </div>
                         <div className="col text-center">
                             <div className="d-flex flex-column align-items-center">
-                                <a href="/proiecte" className="svg-hover">
+                                <a href="/frontend-ccoc/src/components/ProiecteCard.js" className="svg-hover">
                                     <img className="svg-icon" style={{ height: "150px", width: "150px" }} src={proiecte_mainpage} alt="Proiecte logo" />
                                 </a>
                                 <p className="h5-regular g6 mt-2">Proiecte</p>

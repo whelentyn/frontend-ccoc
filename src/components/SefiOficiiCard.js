@@ -4,7 +4,7 @@ import './SefiOficiiCard.css';
 
 const SefiOficiiCard = ({ sefOficiu }) => {
     return (
-        <div className="card card-persona h-100 d-flex flex-row align-items-center">
+        <div className="card card-persona-sef h-100 d-flex flex-row align-items-center">
             {/* Left: Image */}
             <img
                 src={sefOficiu.avatar}

@@ -22,3 +22,19 @@
     padding: 5px;
 }
 
+.card-persona {
+    border: none; /* Removes border */
+    border-radius: 25px; /* Rounded corners */
+    overflow: hidden; /* Ensures content stays within rounded corners */
+    background-color: var(--g0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+    .card-persona:hover {
+        transform: translateY(-1px); /* Slight lift effect on hover */
+        box-shadow: 4px 4px 0 var(--lemon-zest-regular);
+    }
+}
+

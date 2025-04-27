@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Proiecte.css";
+import "./ProiecteCard.css";
 import {DOMAIN} from "../api";
 import {getAllProjects} from "../api/projects";
 

@@ -25,10 +25,12 @@
     }
 }
 
-.card-anunturi-image:hover,
-.card-anunturi-image:focus {
-    transform: translateY(-1px); /* Slight lift effect on hover */
-    box-shadow: 4px 4px 0 var(--lemon-zest-regular);
+@media (hover: hover) and (pointer: fine) {
+    .card-anunturi-image:hover,
+    .card-anunturi-image:focus {
+        transform: translateY(-1px); /* Slight lift effect on hover */
+        box-shadow: 4px 4px 0 var(--lemon-zest-regular);
+    }
 }
 
 h3 {

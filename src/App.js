@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { useLocation, BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+    useLocation,
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    useRoutes
+} from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -17,41 +24,52 @@ import Despre from "./pages/Despre/Despre";
 import AnunturiDetail from "./pages/Anunturi/AnunturiDetail";
 import ProiectePage from "./pages/ProiectePage";
 import AppointmentForm from "./pages/Formular/FormularCP";
-import { getArticles } from "./api/articles";
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }, [pathname]);
 
     return null;
 };
 
+const AnimatedRoutes = () => {
+    const location = useLocation();
+
+    return (
+        <TransitionGroup component={null}>
+            <CSSTransition key={location.pathname} classNames="fade" timeout={600}>
+            <Routes location={location}>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/servicii" element={<Servicii />} />
+                    <Route path="/voluntariat" element={<Voluntariat />} />
+                    <Route path="/anunturi" element={<Anunturi />} />
+                    <Route path="/anunturi/:slug" element={<AnunturiDetail />} />
+                    <Route path="/despre/misiune-si-scop" element={<Despre />} />
+                    <Route path="/despre/personal" element={<Personal />} />
+                    <Route path="/despre/sefi-de-oficii" element={<SefiDeOficii />} />
+                    <Route path="/despre/documente" element={<Documente />} />
+                    <Route path="/proiecte/:slug" element={<ProiectePage />} />
+                    <Route path="/evenimente/:slug" element={<ProiectePage />} />
+                    <Route path="/servicii/formular" element={<AppointmentForm />} />
+                </Routes>
+            </CSSTransition>
+        </TransitionGroup>
+    );
+};
+
 const App = () => {
     return (
         <Router>
-            <ScrollToTop /> {/* Scrolls to top on route change */}
+            <ScrollToTop />
             <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
                 <div className="fixed-top" style={{ zIndex: 1030 }}>
                     <Header />
                 </div>
                 <div style={{ flex: "1 0 auto", marginTop: "40px" }}>
-                    <Routes>
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/servicii" element={<Servicii />} />
-                        <Route path="/voluntariat" element={<Voluntariat />} />
-                        <Route path="/anunturi" element={<Anunturi />} />
-                        <Route path="/anunturi/:slug" element={<AnunturiDetail />} />
-                        <Route path="/despre/misiune-si-scop" element={<Despre />} />
-                        <Route path="/despre/personal" element={<Personal />} />
-                        <Route path="/despre/sefi-de-oficii" element={<SefiDeOficii />} />
-                        <Route path="/despre/documente" element={<Documente />} />
-                        <Route path="/proiecte/:slug" element={<ProiectePage />} />
-                        <Route path="/evenimente/:slug" element={<ProiectePage />} />
-                        <Route path="/servicii/formular" element={<AppointmentForm />} />
-                    </Routes>
+                    <AnimatedRoutes />
                 </div>
                 <Footer style={{ flexShrink: 0 }} />
             </div>

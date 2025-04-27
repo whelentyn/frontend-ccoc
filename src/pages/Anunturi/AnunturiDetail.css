@@ -24,9 +24,11 @@
     outline: none; /* Remove any outline around the card */
 }
 
-.card-altele:hover {
-    transform: translateY(-1px); /* Slight lift effect on hover */
-    box-shadow: 4px 4px 0 var(--lemon-zest-regular) !important; /* Ensure shadow applies */
+@media (hover: hover) and (pointer: fine) {
+    .card-altele:hover {
+        transform: translateY(-1px); /* Slight lift effect on hover */
+        box-shadow: 4px 4px 0 var(--lemon-zest-regular) !important; /* Ensure shadow applies */
+    }
 }
 
 .card-img-top {
