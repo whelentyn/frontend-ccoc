@@ -83,6 +83,9 @@ const Header = () => {
                         <Nav.Link as={Link} to="/servicii" className="h5-regular g6" onClick={handleNavItemClick}>
                             Servicii CCOC
                         </Nav.Link>
+                        <Nav.Link as={Link} to="/resurse" className="h5-regular g6" onClick={handleNavItemClick}>
+                            Resurse
+                        </Nav.Link>
                         <Nav.Link as={Link} to="/voluntariat" className="h5-regular g6" onClick={handleNavItemClick}>
                             Voluntariat
                         </Nav.Link>
@@ -110,25 +113,9 @@ const Header = () => {
                                 ))}
                         </NavDropdown>
 
-                        <NavDropdown
-                            title={<span className="h5-regular">Proiecte</span>}
-                            id="proiecte-dropdown"
-                            className="animated-dropdown"
-                        >
-                            {projects
-                                .filter(project => project.type === 'proiect')
-                                .map(project => (
-                                    <NavDropdown.Item
-                                        as={Link}
-                                        to={`/proiecte/${project.slug}`}
-                                        className="dropdown-item"
-                                        key={project.title}
-                                        onClick={handleNavItemClick}
-                                    >
-                                        {project.title}
-                                    </NavDropdown.Item>
-                                ))}
-                        </NavDropdown>
+                        <Nav.Link as={Link} to="/proiecte" className="h5-regular g6" onClick={handleNavItemClick}>
+                            Proiecte
+                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
 

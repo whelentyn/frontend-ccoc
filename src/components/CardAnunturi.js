@@ -42,7 +42,7 @@ const CardAnunturi = ({ items }) => {
                                     }}
                                 >
                                     {/* Category and Date */}
-                                    <div className="d-flex justify-content-between align-items-start mb-2">
+                                    <div className="d-flex align-items-start mb-2">
                                         {/* Tags container: will wrap tags if needed */}
                                         <div className="d-flex flex-wrap gap-2">
                                             {item.tags.map((tag, index) => (
@@ -63,7 +63,7 @@ const CardAnunturi = ({ items }) => {
                                             ))}
                                         </div>
                                         {/* Date: always stays in the top right */}
-                                        <div className="body-regular g5" style={{ whiteSpace: "nowrap", paddingTop: "5px" }}>
+                                        <div className="body-regular p-1 g5" style={{ whiteSpace: "nowrap"}}>
                                             {formatDate(item.publishDate)}
                                         </div>
                                     </div>

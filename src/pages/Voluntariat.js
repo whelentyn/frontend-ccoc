@@ -1,43 +1,54 @@
-import { Card, Carousel, Col, Container, Row } from "react-bootstrap";
-import imagine_carusel from "../assets/imagine_carusel.svg";
-import CardAnunturi from "../components/CardAnunturi";
-import servicii_mainpage from "../assets/servicii_mainpage.svg";
-import proiecte_mainpage from "../assets/proiecte_mainpage.svg";
-import studentoffice_mainpage from "../assets/studentoffice_mainpage.svg";
-import contact_mainpage from "../assets/contact_mainpage.svg";
-import React, {useEffect, useState} from "react";
-import {DOMAIN} from "../api";
-import {formatDate} from "../utils";
+import React, { useEffect, useState } from "react";
+import { Card, Carousel, Col } from "react-bootstrap";
+import { getAllVoluntariat } from "../api/voluntariat";
+import { DOMAIN } from "../api";
 
-const Voluntariat = ({ volunteerContent }) => {
+const Voluntariat = () => {
+    const [volunteerData, setVolunteerData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await getAllVoluntariat();
+                setVolunteerData(data);
+            } catch (err) {
+                console.error("Failed to fetch volunteering content", err);
+                setError("Eroare la încărcarea datelor.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    if (loading) {
+        return <div className="text-center py-5">Se încarcă...</div>;
+    }
+
+    if (error || !volunteerData) {
+        return <div className="text-center text-danger py-5">{error || "Conținut indisponibil."}</div>;
+    }
 
     return (
         <div style={{ marginTop: "-70px" }} className="container py-5">
-            <Carousel className="carousel-container">
-                <Carousel.Item>
-                    <img className="d-block w-100 rounded" src={imagine_carusel} alt="First slide" />
-                    <Carousel.Caption>
-                        <h3>Slide 1 Title</h3>
-                        <p>Discover your opportunities after graduation.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img className="d-block w-100 rounded" src={imagine_carusel} alt="Second slide" />
-                    <Carousel.Caption>
-                        <h3>Slide 2 Title</h3>
-                        <p>Join exciting projects and start your career.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img className="d-block w-100 rounded" src={imagine_carusel} alt="Third slide" />
-                    <Carousel.Caption>
-                        <h3>Slide 3 Title</h3>
-                        <p>Connect with inspiring people and ideas.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
+            <Carousel className="carousel-container mb-5">
+                {volunteerData.carouselPages.map((page, index) => (
+                    <Carousel.Item key={index}>
+                        <img
+                            className="d-block w-100 rounded"
+                            src={`${DOMAIN}${page.image}`}
+                            alt={page.name}
+                        />
+                        <Carousel.Caption>
+                            <h3>{page.name}</h3>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                ))}
             </Carousel>
 
-            {/* Announcements Section */}
             <div className="row" style={{ marginTop: "50px" }}>
                 <div className="col-md-8">
                     <Col md={6} className="text-start col-md-12">
@@ -45,56 +56,37 @@ const Voluntariat = ({ volunteerContent }) => {
                             <h2 className="h2 g5">Ce înseamnă să fii voluntar?</h2>
                             <div
                                 className="body-regular g5"
-                                dangerouslySetInnerHTML={{ __html: volunteerContent }}
+                                dangerouslySetInnerHTML={{ __html: volunteerData.text }}
                             ></div>
-                            <a href="#" className="custom-button h5-regular">
-                                Înscrie-te aici!
-                            </a>
+                            {volunteerData.linkTo && (
+                                <a href={volunteerData.linkTo} className="custom-button h5-regular" target="_blank" rel="noopener noreferrer">
+                                    Înscrie-te aici!
+                                </a>
+                            )}
                         </div>
                     </Col>
                 </div>
 
-                {/* Useful Information Section */}
                 <div className="col-md-4">
                     <div className="g3 h6">BENEFICIILE VOLUNTARIATULUI</div>
                     <div style={{ marginTop: "20px" }} className="row row-cols-2 g-0">
-                        <div className="col text-center">
-                            <div className="d-flex flex-column align-items-center">
-                                <a href="/servicii" className="svg-hover">
-                                    <img className="svg-icon" style={{ height: "150px", width: "150px" }} src={servicii_mainpage} alt="Servicii logo" />
-                                </a>
-                                <p className="h5-regular g6 mt-2">Servicii</p>
+                        {volunteerData.benefits.map((benefit, index) => (
+                            <div key={index} className="col text-center mb-3">
+                                <div className="d-flex flex-column align-items-center">
+                                    <img
+                                        className="svg-icon"
+                                        style={{ height: "100px", width: "100px" }}
+                                        src={`${DOMAIN}${benefit.image}`}
+                                        alt={benefit.name}
+                                    />
+                                    <p className="h5-regular g6 mt-2">{benefit.name}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col text-center">
-                            <div className="d-flex flex-column align-items-center">
-                                <a href="/frontend-ccoc/src/components/ProiecteCard.js" className="svg-hover">
-                                    <img className="svg-icon" style={{ height: "150px", width: "150px" }} src={proiecte_mainpage} alt="Proiecte logo" />
-                                </a>
-                                <p className="h5-regular g6 mt-2">Proiecte</p>
-                            </div>
-                        </div>
-                        <div className="col text-center">
-                            <div className="d-flex flex-column align-items-center">
-                                <a href="/student-office" className="svg-hover">
-                                    <img className="svg-icon" style={{ height: "150px", width: "150px" }} src={studentoffice_mainpage} alt="Student Office logo" />
-                                </a>
-                                <p className="h5-regular g6 mt-2">Student Office</p>
-                            </div>
-                        </div>
-                        <div className="col text-center">
-                            <div className="d-flex flex-column align-items-center">
-                                <a href="/contact" className="svg-hover">
-                                    <img className="svg-icon" style={{ height: "150px", width: "150px" }} src={contact_mainpage} alt="Contact logo" />
-                                </a>
-                                <p className="h5-regular g6 mt-2">Contact</p>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </div>
         </div>
-
     );
 };
 

@@ -25,13 +25,19 @@ const HomePage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const [articles, shortcutsData, pageContentData, partnersData, carouselItems] = await Promise.all([
+                const [articles, shortcutsData, partnersData, carouselItems] = await Promise.all([
                     getArticles(4),
                     getAllShortcuts(),
-                    getPageBySlug("acasa"),
                     getAllPartners(),
                     getCarouselPage(),
                 ]);
+
+                let pageContentData = {};
+                try {
+                    pageContentData = await getPageBySlug("acasa");
+                } catch (pageError) {
+                    console.error("Failed to fetch page content:", pageError);
+                }
 
                 const groupedByType = partnersData.reduce((acc, partner) => {
                     const type = partner.partnerType || "other";
@@ -47,6 +53,7 @@ const HomePage = () => {
                     carouselItems,
                     partnersByType: groupedByType,
                 });
+
                 setTimeout(() => setLoading(false), 200);
             } catch (err) {
                 setError(err.message);
@@ -56,6 +63,7 @@ const HomePage = () => {
 
         fetchData();
     }, []);
+
 
     if (loading) {
         return (

@@ -24,6 +24,9 @@ import Despre from "./pages/Despre/Despre";
 import AnunturiDetail from "./pages/Anunturi/AnunturiDetail";
 import ProiectePage from "./pages/ProiectePage";
 import AppointmentForm from "./pages/Formular/FormularCP";
+import Proiecte from "./pages/Proiecte";
+import ResursePage from "./pages/Resurse";
+
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -51,9 +54,11 @@ const AnimatedRoutes = () => {
                     <Route path="/despre/personal" element={<Personal />} />
                     <Route path="/despre/sefi-de-oficii" element={<SefiDeOficii />} />
                     <Route path="/despre/documente" element={<Documente />} />
+                    <Route path="/proiecte" element={<Proiecte />} />
                     <Route path="/proiecte/:slug" element={<ProiectePage />} />
                     <Route path="/evenimente/:slug" element={<ProiectePage />} />
                     <Route path="/servicii/formular" element={<AppointmentForm />} />
+                    <Route path="/resurse" element={<ResursePage />} />
                 </Routes>
             </CSSTransition>
         </TransitionGroup>
