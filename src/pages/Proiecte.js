@@ -36,8 +36,12 @@ const Proiecte = () => {
                 ]);
 
                 if (parentsRes.status === "fulfilled") {
+                    const filteredParents = parentsRes.value.filter(
+                        (parent) => parent.type === "proiect"
+                    );
+
                     const enrichedParents = await Promise.all(
-                        parentsRes.value.map(async (parent) => {
+                        filteredParents.map(async (parent) => {
                             const children = await getChildren(parent.slug);
                             return {
                                 ...parent,
@@ -73,7 +77,6 @@ const Proiecte = () => {
 
         fetchData();
     }, []);
-
     const toggleProject = (index) => {
         setExpandedProjects((prev) =>
             prev.map((val, i) => (i === index ? !val : val))

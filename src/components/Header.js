@@ -99,7 +99,7 @@ const Header = () => {
                             className="animated-dropdown"
                         >
                             {projects
-                                .filter(project => project.type === 'eveniment')
+                                .filter(project => project.type === 'eveniment' && project.isParent === true)
                                 .map(project => (
                                     <NavDropdown.Item
                                         as={Link}
