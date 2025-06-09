@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Documente.css";
-import { getAllReports } from "../../api/rapoarte";
+import { getResourcesByType } from "../../api/resurse";
 import { getPageBySlug } from "../../api/pages";
 import { DOMAIN } from "../../api";
 import he from "he";
@@ -14,21 +14,20 @@ const DocumentePage = () => {
 
     useEffect(() => {
         const fetchAll = async () => {
-            const [reportsRes, pageRes] = await Promise.allSettled([
-                getAllReports(),
+            const [raportRes, planRes, pageRes] = await Promise.allSettled([
+                getResourcesByType("raport"),
+                getResourcesByType("plan"),
                 getPageBySlug("despre/documente"),
             ]);
 
-            if (reportsRes.status === "fulfilled") {
-                const reports = reportsRes.value;
-                const raports = reports
-                    .filter((r) => r.type === "raport")
-                    .sort((a, b) => b.year - a.year);
-                const plans = reports
-                    .filter((r) => r.type === "plan")
-                    .sort((a, b) => b.year - a.year);
-                setActivityReports(raports);
-                setOperationalPlans(plans);
+            if (raportRes.status === "fulfilled") {
+                const sortedRaports = raportRes.value.sort((a, b) => b.year - a.year);
+                setActivityReports(sortedRaports);
+            }
+
+            if (planRes.status === "fulfilled") {
+                const sortedPlans = planRes.value.sort((a, b) => b.year - a.year);
+                setOperationalPlans(sortedPlans);
             }
 
             if (pageRes.status === "fulfilled") {

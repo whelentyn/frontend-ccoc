@@ -1,24 +1,28 @@
-/* Reset margins and padding for the navbar */
+/* ==== Global Reset ==== */
 html, body {
     overflow-x: hidden !important;
     width: 100% !important;
+    margin: 0;
+    padding: 0;
 }
 
+/* ==== Navbar Base ==== */
 .navbar {
+    width: 100%;
+    min-height: 60px;
     padding: 0;
     margin: 0;
-    width: 100%;
     border: none;
-    min-height: 60px;
     background-color: #FAFAFA !important;
-    z-index: 1030;
     position: sticky;
     top: 0;
+    z-index: 1030;
+    display: flex;
 }
 
 .navbar-brand {
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 .navbar-brand img {
@@ -27,6 +31,7 @@ html, body {
     width: auto;
 }
 
+/* ==== Navbar Nav ==== */
 .navbar-nav {
     display: flex;
     justify-content: center;
@@ -41,7 +46,7 @@ html, body {
     transition: color 0.3s, font-weight 0.1s;
 }
 
-/* Navbar Toggler Styles */
+/* ==== Toggler Styles ==== */
 .navbar-toggler {
     border: none;
     outline: none;
@@ -49,64 +54,76 @@ html, body {
 
 .navbar-toggler:focus,
 .navbar-toggler:active {
-    outline: none !important;
     box-shadow: none !important;
 }
 
-/* Custom X icon for toggler */
 .close-icon {
     font-weight: bold;
     color: #333;
     display: inline-block;
-    text-align: center;
     width: 21px;
     height: 18px;
+    text-align: center;
     cursor: pointer;
 }
 
-/* Mobile View Styles */
-@media (max-width: 1127px) {
-    .dropdown-menu {
-        all: unset;
-        display: block;
+/* ==== Dropdown Base ==== */
+.dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: #FAFAFA;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-header {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+/* ==== Hover Effects (Desktop Only) ==== */
+@media (min-width: 1128px) {
+    .nav-link:hover,
+    .nav-item.dropdown:hover > .nav-link,
+    .despre-dropdown:hover {
+        color: #5D5FEF !important;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu {
         opacity: 1 !important;
         visibility: visible !important;
-        transform: none !important;
-        position: static !important;
-        background: none !important;
-        padding: 0;
-        margin: 0;
+        transform: translateY(0) !important;
+        animation: none;
     }
 
-    .dropdown-item {
-        all: unset;
-        display: block;
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
-        color: #1B1B1B;
+    .dropdown-menu .dropdown-item:hover {
+        background-color: #f5f5f5 !important;
+        color: #5D5FEF !important;
     }
+}
 
-    .navbar-nav {
-        align-items: flex-start !important;
-        padding-left: 12px !important;
-    }
-
+/* ==== Mobile View Styles ==== */
+@media (max-width: 1127px) {
     .navbar {
         height: 60px;
-        display: flex;
+        flex-direction: row;
     }
 
     .navbar-brand img {
         height: 30px !important;
-        width: auto;
-    }
-
-    .navbar-collapse {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: #FAFAFA;
     }
 
     .navbar-toggler {
@@ -114,19 +131,18 @@ html, body {
         margin-left: 10px;
     }
 
-    .navbar-brand:first-of-type {
-        order: 2;
-    }
-
-    .navbar-brand:last-of-type {
-        order: 3;
-    }
+    .navbar-brand:first-of-type { order: 2; }
+    .navbar-brand:last-of-type { order: 3; }
+    .navbar-collapse { order: 4; }
 
     .navbar-collapse {
-        order: 4;
-    }
-
-    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100% !important;
+        background-color: #FAFAFA;
+        padding: 1rem 1rem 2rem;
+        box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
         max-height: 0;
         opacity: 0;
         overflow: hidden;
@@ -138,67 +154,41 @@ html, body {
         opacity: 1;
     }
 
-    @keyframes slideDown {
-        0% {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-}
-
-.dropdown-header {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #333;
-    border-bottom: 1px solid #ddd;
-}
-
-.dropdown-item {
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
-    font-size: 0.9rem;
-    color: #333;
-    text-decoration: none;
-    background-color: #FAFAFA;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Hide dropdowns by default */
-.dropdown-menu {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-}
-
-/* Apply hover effects only on desktop */
-@media (min-width: 1128px) {
-    .nav-link:hover {
-        color: #5D5FEF !important;
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        width: 100%;
+        padding-left: 0;
     }
 
-    .nav-item.dropdown:hover .dropdown-menu {
-        visibility: visible !important;
+    .nav-link,
+    .dropdown-item {
+        padding: 0.3rem 0;
+        font-size: 1rem;
+        width: 100%;
+        text-align: left;
+        color: #1B1B1B !important;
+        background: none !important;
+    }
+
+    .dropdown-menu {
+        all: unset;
+        display: block;
         opacity: 1 !important;
-        transform: translateY(0) !important;
-        animation: none;
+        visibility: visible !important;
+        transform: none !important;
+        position: static !important;
     }
 
-    .despre-dropdown:hover,
-    .nav-item:hover,
-    .nav-item.dropdown:hover > .nav-link {
-        color: #5D5FEF !important;
+    .dropdown-menu .dropdown-item {
+        padding-left: 1.0rem !important; /* Indentation for subitems */
     }
 
-    .dropdown-menu .dropdown-item:hover {
-        background-color: #f5f5f5 !important;
-        color: #5D5FEF !important;
+    .dropdown-menu.show {
+        box-shadow: none !important;
+        border: none !important;
+        background-color: transparent !important;
     }
+
 }
-

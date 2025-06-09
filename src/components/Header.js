@@ -66,16 +66,16 @@ const Header = () => {
                             id="despre-dropdown"
                             className="animated-dropdown"
                         >
-                            <NavDropdown.Item as={Link} to="/despre/misiune-si-scop" className="dropdown-item" onClick={handleNavItemClick}>
+                            <NavDropdown.Item as={Link} to="/despre/misiune-si-scop" className="h5-regular dropdown-item" onClick={handleNavItemClick}>
                                 Misiune și scop
                             </NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/despre/personal" className="dropdown-item" onClick={handleNavItemClick}>
+                            <NavDropdown.Item as={Link} to="/despre/personal" className="h5-regular dropdown-item" onClick={handleNavItemClick}>
                                 Personal CCOC
                             </NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/despre/sefi-de-oficii" className="dropdown-item" onClick={handleNavItemClick}>
+                            <NavDropdown.Item as={Link} to="/despre/sefi-de-oficii" className="h5-regular dropdown-item" onClick={handleNavItemClick}>
                                 Șefi de oficii
                             </NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/despre/documente" className="dropdown-item" onClick={handleNavItemClick}>
+                            <NavDropdown.Item as={Link} to="/despre/documente" className="h5-regular dropdown-item" onClick={handleNavItemClick}>
                                 Documente
                             </NavDropdown.Item>
                         </NavDropdown>
@@ -104,7 +104,7 @@ const Header = () => {
                                     <NavDropdown.Item
                                         as={Link}
                                         to={`/evenimente/${project.slug}`}
-                                        className="dropdown-item"
+                                        className="h5-regular dropdown-item"
                                         key={project.title}
                                         onClick={handleNavItemClick}
                                     >
