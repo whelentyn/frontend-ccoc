@@ -1,30 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { getResourcesByType } from "../api/resurse"; // Adjust path as needed
+import { getResourcesByType } from "../api/resurse";
 import { getPageBySlug } from "../api/pages";
 import he from "he";
+import { DOMAIN } from "../api";
 import { Spinner } from "react-bootstrap";
 
-// Helper to group by type (only "altele" here, but kept generic for future use)
-const groupResourcesByType = (resources) => {
+// 🔁 Group resources by `subtype` now
+const groupResourcesBySubtype = (resources) => {
     const grouped = {};
 
     resources.forEach((res) => {
-        const type = res.type || "Altele";
-        if (!grouped[type]) {
-            grouped[type] = [];
+        const subtype = res.subtype?.trim() || "Altele";
+        if (!grouped[subtype]) {
+            grouped[subtype] = [];
         }
 
-        grouped[type].push({
+        grouped[subtype].push({
             label: res.file.split("/").pop(),
             year: res.year,
-            file: res.file,
+            title: res.title,
+            file: `${DOMAIN}${res.file}`,
             description: res.description?.replace(/<\/?[^>]+(>|$)/g, ""),
             authors: res.authors,
         });
     });
 
-    return Object.entries(grouped).map(([type, resources]) => ({
-        type,
+    return Object.entries(grouped).map(([subtype, resources]) => ({
+        subtype,
         resources,
     }));
 };
@@ -44,7 +46,7 @@ const ResursePage = () => {
                 ]);
 
                 if (resourcesRes.status === "fulfilled") {
-                    const grouped = groupResourcesByType(resourcesRes.value);
+                    const grouped = groupResourcesBySubtype(resourcesRes.value);
                     setResourceData(grouped);
                 } else {
                     setError("A apărut o eroare la încărcarea resurselor.");
@@ -89,6 +91,7 @@ const ResursePage = () => {
 
             {resourceData.map((category, idx) => (
                 <section key={idx} className="mb-5">
+                    <h3 className="g5 mb-4">{category.subtype}</h3>
                     <div className="row gy-3">
                         {category.resources.map((res, index) => (
                             <div className="col-md-2" key={index}>
@@ -99,17 +102,14 @@ const ResursePage = () => {
                                     className="doc-button h5-regular d-block"
                                     style={{ textDecoration: "none", color: "inherit" }}
                                 >
+
                                     <div>
                                         <h5
                                             className="h5 g6 mb-1"
-                                            style={{
-                                                overflow: "hidden",
-                                                whiteSpace: "nowrap",
-                                                textOverflow: "ellipsis",
-                                            }}
-                                            title={res.label}
+                                            style={{ overflow: "hidden" }}
+                                            title={res.title}
                                         >
-                                            {res.label}
+                                            {res.title}
                                         </h5>
                                         <p className="body-regular g3 mb-0">{res.year}</p>
                                         <p className="body-regular g6 mb-0">{res.description}</p>

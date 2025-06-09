@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Card, Carousel, Col } from "react-bootstrap";
 import { getAllVoluntariat } from "../api/voluntariat";
+import { getArticlesByTag } from "../api/articles";
 import { DOMAIN } from "../api";
+import CardAnunturi from "../components/CardAnunturi";
 
 const Voluntariat = () => {
     const [volunteerData, setVolunteerData] = useState(null);
+    const [announcements, setAnnouncements] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -13,6 +16,9 @@ const Voluntariat = () => {
             try {
                 const data = await getAllVoluntariat();
                 setVolunteerData(data);
+
+                const taggedArticles = await getArticlesByTag("Voluntariat", 4);
+                setAnnouncements(Array.isArray(taggedArticles) ? taggedArticles : []);
             } catch (err) {
                 console.error("Failed to fetch volunteering content", err);
                 setError("Eroare la încărcarea datelor.");
@@ -34,6 +40,7 @@ const Voluntariat = () => {
 
     return (
         <div style={{ marginTop: "-70px" }} className="container py-5">
+            {/* Carousel Section */}
             <Carousel className="carousel-container mb-5">
                 {volunteerData.carouselPages.map((page, index) => (
                     <Carousel.Item key={index}>
@@ -49,6 +56,7 @@ const Voluntariat = () => {
                 ))}
             </Carousel>
 
+            {/* Content and Benefits Section */}
             <div className="row" style={{ marginTop: "50px" }}>
                 <div className="col-md-8">
                     <Col md={6} className="text-start col-md-12">
@@ -86,6 +94,19 @@ const Voluntariat = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Latest Announcements Section */}
+            {announcements.length > 0 && (
+                <div className="row mt-5">
+                    <div className="col-md-8">
+                        <div className="h6 g3">ULTIMELE ANUNȚURI DESPRE VOLUNTARIAT</div>
+                        <CardAnunturi items={announcements.map(item => ({
+                            ...item,
+                            tags: item.tags ?? []  // Ensure tags is always an array
+                        }))} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
