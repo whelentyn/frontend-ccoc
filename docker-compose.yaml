@@ -4,10 +4,10 @@ services:
   frontend:
     build:
       context: .
-    image: 188.34.177.197:32000/ccoc-frontend:latest
+    image: 188.34.177.197:32000/ccoc-frontend:test
     container_name: ccoc-frontend
     ports:
-      - "3000:3000"
+      - "3000:80"
     environment:
       - NODE_ENV=production
       - REACT_APP_API_URL=https://dev.ccoc.edicz.com
