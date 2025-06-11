@@ -82,7 +82,7 @@ const HomePage = () => {
     const { announcements, shortcuts, carouselItems, pageContent, partnersByType } = data;
 
     return (
-        <div style={{ marginTop: "-70px" }}>
+        <div style={{ marginTop: "-40px" }}>
             <div className="container py-5">
                 {/* Carousel Section */}
                 <div className="row mb-6">
