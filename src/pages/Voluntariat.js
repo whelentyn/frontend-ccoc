@@ -39,9 +39,9 @@ const Voluntariat = () => {
     }
 
     return (
-        <div style={{ marginTop: "-70px" }} className="container py-5">
+        <div style={{ marginTop: "-40px" }} className="container py-5">
             {/* Carousel Section */}
-            <Carousel className="carousel-container mb-5">
+            <Carousel className="carousel-container">
                 {volunteerData.carouselPages.map((page, index) => (
                     <Carousel.Item key={index}>
                         <img
